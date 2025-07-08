@@ -1,0 +1,21 @@
+{
+    "network": {
+        "websocketServers": [
+            {
+                "name": "WsServer",
+                "enable": true,
+                "host": "localhost",
+                "port": 8082,
+                "messagePostFormat": "array",
+                "reportSelfMessage": false,
+                "token": "chcat13201145",
+                "enableForcePushEvent": true,
+                "debug": false,
+                "heartInterval": 30000
+            }
+        ]
+    },
+    "musicSignUrl": "",
+    "enableLocalFile2Url": false,
+    "parseMultMsg": false
+}

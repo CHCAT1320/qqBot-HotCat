@@ -1,0 +1,10 @@
+def help(text:str):
+    if text.startswith("帮助") or text.startswith("help"):
+        helpList = {
+            "机厅列表": "机厅列表 / jtlb",
+            "添加机厅": "添加机厅 <机厅名称>",
+            "更新机厅人数" : "更新机厅人数 <机厅名称/别名> <人数> / <+1>/<->1",
+            "机厅别名": "机厅别名 <机厅名称> <别名>",
+            "关闭/开启功能<>": "关闭/开启<功能名>",
+        }
+        return "除部分功能外，其他功能可以拼音首字母缩写，如“添加机厅”可缩写为“tjjt”。\n\n" + "\n".join([f"{k}: {v}" for k, v in helpList.items()])
