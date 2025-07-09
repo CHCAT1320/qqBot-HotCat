@@ -137,3 +137,16 @@ class jiting:
             return
         except:
             return
+        
+    def deleteJiting(self, text:str):
+        try:
+            for jiting_info in self.groupInfo["jitingList"]:
+                if text.startswith("删除机厅"):
+                    name = text.split(" ")[1]
+                    if name == jiting_info["name"] or name == jiting_info["name1"]:
+                        self.groupInfo["jitingList"].remove(jiting_info)
+                        self.writeGroupJsonFile(self.groupInfo)
+                        return f"机厅 {name} 已删除"
+            return
+        except:
+            return

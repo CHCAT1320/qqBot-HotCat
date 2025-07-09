@@ -47,6 +47,7 @@ async def on_group_message(msg: GroupMessage):
     await bot.api.post_group_msg(msg.group_id, text=jitingI.setJiTingName1(msg.raw_message))
     await bot.api.post_group_msg(msg.group_id, text=jitingI.updateJitingMembers(msg.raw_message))
     await bot.api.post_group_msg(msg.group_id, text=jitingI.lookUpJiting(msg.raw_message))
+    await bot.api.post_group_msg(msg.group_id, text=jitingI.deleteJiting(msg.raw_message))
     
     await bot.api.post_group_msg(msg.group_id, text=help.help(msg.raw_message))
 
