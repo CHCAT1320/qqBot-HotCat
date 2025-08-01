@@ -15,6 +15,7 @@ import help
 import littleFunctions
 import jiting
 import getGameSrc
+import getChuMusicInfo
 
 _log = get_log()
 
@@ -53,6 +54,10 @@ async def on_group_message(msg: GroupMessage):
 
     gameSrc = getGameSrc.getWaterFishingSrc()
     await gameSrc.get_src(bot, msg.group_id, msg.user_id, msg.raw_message)
+
+    searchChuMusicInfo = getChuMusicInfo.ChuMusicInfo()
+    await searchChuMusicInfo.getMusicInfo(msg.raw_message, msg.group_id, msg.user_id, bot)
+    await bot.api.post_group_msg(msg.group_id, text=searchChuMusicInfo.writeMusicOtherName(msg.raw_message))
 
 @bot.notice_event
 async def on_notice(notice):
