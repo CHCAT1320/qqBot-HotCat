@@ -59,7 +59,7 @@ class jiting:
         
     def getJitingList(self, text:str):
         try:
-            if text.startswith("机厅列表") or text.startswith("jtlb"):
+            if text.startswith("机厅列表") or text.startswith("jtlb") or "jtj" in text or "几个人" in text or "几人" in text:
                 jitingList = self.groupInfo["jitingList"]
                 if not jitingList:
                     return "当前群聊没有机厅"

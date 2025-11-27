@@ -1,0 +1,46 @@
+{
+    "case_sensitive": true,
+    "default_role": "user",
+    "roles": {
+        "user": {
+            "white_permissions_list": [],
+            "black_permissions_list": []
+        },
+        "admin": {
+            "white_permissions_list": [],
+            "black_permissions_list": []
+        },
+        "root": {
+            "white_permissions_list": [],
+            "black_permissions_list": []
+        }
+    },
+    "role_users": {
+        "user": [
+            "1095216448"
+        ],
+        "admin": [],
+        "root": [
+            "1095216448"
+        ]
+    },
+    "users": {
+        "1095216448": {
+            "white_permissions_list": [],
+            "black_permissions_list": [],
+            "role_list": [
+                "user",
+                "root"
+            ]
+        }
+    },
+    "permissions_trie_paths": {},
+    "role_inheritance": {
+        "admin": [
+            "root"
+        ],
+        "user": [
+            "admin"
+        ]
+    }
+}

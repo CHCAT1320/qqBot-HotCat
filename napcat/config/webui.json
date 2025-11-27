@@ -1,7 +1,7 @@
 {
     "host": "0.0.0.0",
     "port": 6099,
-    "token": "napcat",
+    "token": "Chcat13201145!",
     "loginRate": 10,
     "autoLoginAccount": "",
     "theme": {
@@ -247,5 +247,6 @@
             "--heroui-box-shadow-large": "0px 0px 30px 0px rgba(0, 0, 0, .04), 0px 30px 60px 0px rgba(0, 0, 0, .12), 0px 0px 1px 0px rgba(0, 0, 0, .3)",
             "--heroui-hover-opacity": ".8"
         }
-    }
+    },
+    "wsListenIp": "localhost"
 }

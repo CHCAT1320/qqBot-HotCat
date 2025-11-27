@@ -1,7 +1,11 @@
 from ncatbot.core import BotClient, GroupMessage, PrivateMessage
-from ncatbot.utils.config import config
+from ncatbot.utils import ncatbot_config as config
 from ncatbot.utils.logger import get_log
 from ncatbot.plugin import BasePlugin
+from ncatbot.core import MessageArray, Text, At, Image
+from ncatbot.core.event.message_segment import Record, Reply
+print(MessageArray())
+
 import sys
 import io
 
@@ -16,6 +20,7 @@ import littleFunctions
 import jiting
 import getGameSrc
 import getChuMusicInfo
+import mirrorImage
 
 _log = get_log()
 
@@ -23,8 +28,9 @@ _log = get_log()
 BOT_QQ = "703263936"
 config.set_bot_uin(BOT_QQ)
 config.set_root("1095216448")  # 超级管理员账号
+config.set_webui_token("Chcat13201145!")  # 网页端token
 config.set_ws_uri("ws://localhost:8082")  # websocket地址
-config.set_token("chcat13201145")  # token
+config.set_ws_token("chcat13201145")  # token
 
 bot = BotClient()
 
@@ -55,12 +61,15 @@ async def on_group_message(msg: GroupMessage):
     gameSrc = getGameSrc.getWaterFishingSrc()
     await gameSrc.get_src(bot, msg.group_id, msg.user_id, msg.raw_message)
 
-    searchChuMusicInfo = getChuMusicInfo.ChuMusicInfo()
-    await searchChuMusicInfo.getMusicInfo(msg.raw_message, msg.group_id, msg.user_id, bot)
-    await bot.api.post_group_msg(msg.group_id, text=searchChuMusicInfo.writeMusicOtherName(msg.raw_message))
+    # searchChuMusicInfo = getChuMusicInfo111.ChuMusicInfo()
+    # await searchChuMusicInfo.getMusicInfo(msg.raw_message, msg.group_id, msg.user_id, bot)
+    await getChuMusicInfo.sedMusicInfoByName(msg.raw_message, msg.group_id, msg.user_id, bot, MessageArray, Record)
+    # await bot.api.post_group_msg(msg.group_id, text=searchChuMusicInfo.writeMusicOtherName(msg.raw_message))
+    await mirrorImage.send_mirrored_image(bot, msg.group_id, msg.user_id, msg, Reply, Image, Text)
 
-@bot.notice_event
+@bot.on_notice()
 async def on_notice(notice):
+    print(notice)
     _log.info(notice)
     # 戳一戳回复消息列表
     pokeText = [
@@ -71,10 +80,10 @@ async def on_notice(notice):
         "你是不是在找事？","我喜欢你"
     ]
 
-    if notice.get("sub_type") == "poke" and str(notice.get("target_id")) == BOT_QQ:
+    if notice["sub_type"] == "poke" and str(notice["target_id"]) == BOT_QQ:
         reply_text = random.choice(pokeText)
-        sender_id = notice.get("user_id")
-        if "group_id" in notice:
+        sender_id = notice["user_id"]
+        if notice:
             group_id = notice["group_id"]
             await bot.api.post_group_msg(group_id=group_id, at=sender_id, text=reply_text)
             
@@ -88,7 +97,14 @@ async def on_notice(notice):
                 await bot.api.send_like(user_id=sender_id, times=50)
         else:
             await bot.api.post_private_msg(user_id=sender_id, text=reply_text)
-
+    if notice["notice_type"] == "group_increase":
+        group_id = notice["group_id"]
+        user_id = notice["user_id"]
+        await bot.api.post_group_msg(group_id=group_id, text="欢迎新来的🐲👃！！！", at=user_id)
+    if notice["notice_type"] == "group_decrease":
+        group_id = notice["group_id"]
+        user_id = notice["user_id"]
+        await bot.api.post_group_msg(group_id=group_id, text="被群内的🐲👃吓跑了！！！", at=user_id)
 
 if __name__ == "__main__":
     bot.run()

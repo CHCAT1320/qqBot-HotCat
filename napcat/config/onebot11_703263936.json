@@ -17,5 +17,5 @@
     },
     "musicSignUrl": "",
     "enableLocalFile2Url": false,
-    "parseMultMsg": false
+    "parseMultMsg": true
 }

@@ -4,7 +4,7 @@ import { parentPort } from 'worker_threads';
 function recvTask(cb) {
   parentPort?.on("message", async (taskData) => {
     try {
-      let ret = await cb(taskData);
+      const ret = await cb(taskData);
       parentPort?.postMessage(ret);
     } catch (error) {
       parentPort?.postMessage({ error: error.message });

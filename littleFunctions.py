@@ -55,7 +55,8 @@ class funcs:
             return str(float(number) + 1)
         except:
             # return "请输入数字"
-            pass
+            # pass
+            return
 
     
     def bracketPair(self, text:str):

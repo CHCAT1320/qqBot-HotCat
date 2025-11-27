@@ -1,0 +1,9 @@
+11-24 20:31:38 [info] [StdOut] 已重定向到命名管道: \\.\pipe\NapCat_6212
+11-24 20:31:38 [info] [QQ版本兼容性检测] 当前版本Appid未内置 通过Major获取 为了更好的性能请尝试更新NapCat
+11-24 20:31:38 [info] [NapCat] [Core] NapCat.Core Version: 4.8.90
+11-24 20:31:38 [info] [Check] ffmpeg: d:\1code\qqbot\napcat\ffmpeg\ffmpeg.exe
+11-24 20:31:38 [info] [Check] ffprobe: d:\1code\qqbot\napcat\ffmpeg\ffprobe.exe
+11-24 20:31:38 [error] [NapCat] [Error] unhandledRejection: TypeError: wrapper.NodeIQQNTWrapperSession.create is not a function
+    at NCoreInitShell (file:///d:/1code/qqbot/napcat/napcat.mjs:90327:51)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+11-24 20:31:38 [info] [NapCat] [WebUi] WebUi Local Panel Url: http://127.0.0.1:6099/webui?token=Chcat13201145%21

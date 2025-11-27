@@ -1,0 +1,17 @@
+11-24 20:47:07 [info] [FFmpeg] 检查 Native Addon 可用性...
+11-24 20:47:07 [info] [FFmpeg] ✓ 使用 Native Addon 适配器
+11-24 20:47:07 [info] [StdOut] 已重定向到命名管道: \\.\pipe\NapCat_15480
+11-24 20:47:07 [info] [QQ版本兼容性检测] 当前版本Appid未内置 通过Major获取 为了更好的性能请尝试更新NapCat
+11-24 20:47:07 [info] [PacketHandler] 加载成功
+11-24 20:47:07 [warn] NativePacketClient: 未找到对应版本的偏移数据: 9.9.23-42430-x64
+11-24 20:47:07 [info] [NapCat] [Core] NapCat.Core Version: v4.9.74
+11-24 20:47:08 [info] [NapCat] [WebUi] WebUi Token: Chcat13201145!
+11-24 20:47:08 [info] [NapCat] [WebUi] WebUi User Panel Url: http://127.0.0.1:6099/webui?token=Chcat13201145!
+11-24 20:47:08 [info] [NapCat] [WebUi] WebUi User Panel Url: http://0.0.0.0:6099/webui?token=Chcat13201145!
+11-24 20:47:08 [info] 等待网络连接...
+11-24 20:47:08 [info] 网络已连接
+11-24 20:47:08 [info] 正在快速登录  703263936
+11-24 20:47:12 [debug] 本账号数据/缓存目录： E:\QQwj\NapCat\data
+11-24 20:47:12 [debug] [Core] [Config] 配置文件d:\1code\qqbot\napcat\config\napcat_703263936.json加载 {"fileLog":false,"consoleLog":true,"fileLogLevel":"debug","consoleLogLevel":"info","packetBackend":"auto","packetServer":"","o3HookMode":1}
+11-24 20:47:12 [error] [Core] [Packet] PacketBackend 不支持当前QQ版本架构：9.9.23-42430-x64，
+            请参照 https://github.com/NapNeko/NapCatQQ/releases/tag/vv4.9.74 配置正确的QQ版本！
