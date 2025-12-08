@@ -3,10 +3,11 @@ import time
 import unicodedata
 
 class jiting:
-    def __init__(self, group_id, user_id, sender_name):
+    def __init__(self, group_id, user_id, sender_name, role):
         self.group_id = group_id
         self.user_id = user_id
         self.sender_name = sender_name
+        self.role = role
         self.file_path = f"group/{group_id}.json"
         self.groupInfo = self.readGroupJsonFile()
 
@@ -29,6 +30,10 @@ class jiting:
     def addJiting(self, text:str):
         try:
             if text.startswith("添加机厅") or text.startswith("tjjt"):
+                print(self.role)
+                if self.user_id != "1095216448":
+                    if self.role != "owner" and self.role != "admin":
+                        return "你没有权限执行此操作"
                 name = text.split(" ")[1]
                 if len(self.groupInfo["jitingList"]) >= 10:
                     return "机厅数量不能超过10个"
@@ -76,6 +81,9 @@ class jiting:
     def setJiTingName1(self, text:str):
         try:
             if text.startswith("机厅别名") or text.startswith("jtbm"):
+                if self.user_id != "1095216448":
+                    if self.role != "owner" and self.role != "admin":
+                        return "你没有权限执行此操作"
                 name = text.split(" ")[1]
                 name1 = text.split(" ")[2]
                 if not name:
@@ -142,6 +150,9 @@ class jiting:
         try:
             for jiting_info in self.groupInfo["jitingList"]:
                 if text.startswith("删除机厅"):
+                    if self.user_id != "1095216448":
+                        if self.role != "owner" and self.role != "admin":
+                            return "你没有权限执行此操作"
                     name = text.split(" ")[1]
                     if name == jiting_info["name"] or name == jiting_info["name1"]:
                         self.groupInfo["jitingList"].remove(jiting_info)

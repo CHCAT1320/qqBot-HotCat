@@ -4,12 +4,12 @@ from ncatbot.utils.logger import get_log
 from ncatbot.plugin import BasePlugin
 from ncatbot.core import MessageArray, Text, At, Image
 from ncatbot.core.event.message_segment import Record, Reply
-print(MessageArray())
+# print(MessageArray())
 
-import sys
-import io
+# import sys
+# import io
 
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+# sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 import random
 import time
 import json
@@ -41,6 +41,7 @@ async def on_group_message(msg: GroupMessage):
 
     if msg.user_id == BOT_QQ:
         return
+    await mirrorImage.send_mirrored_image(bot, msg.group_id, msg.user_id, msg, Reply, Image, Text)
 
     littleFunctionsI = littleFunctions.funcs(msg.group_id, msg.user_id)
     await bot.api.post_group_msg(msg.group_id, text=littleFunctionsI.numberAddOne(msg.raw_message))
@@ -48,7 +49,7 @@ async def on_group_message(msg: GroupMessage):
     await bot.api.post_group_msg(msg.group_id, text=littleFunctionsI.openOrCloseFuncs(msg.raw_message))
     await littleFunctionsI.why(bot, msg.raw_message)
     
-    jitingI = jiting.jiting(msg.group_id, msg.user_id, msg.sender.nickname)
+    jitingI = jiting.jiting(msg.group_id, msg.user_id, msg.sender.nickname, msg.sender.role)
     await bot.api.post_group_msg(msg.group_id, text=jitingI.addJiting(msg.raw_message))
     await bot.api.post_group_msg(msg.group_id, text=jitingI.getJitingList(msg.raw_message))
     await bot.api.post_group_msg(msg.group_id, text=jitingI.setJiTingName1(msg.raw_message))
@@ -65,7 +66,6 @@ async def on_group_message(msg: GroupMessage):
     # await searchChuMusicInfo.getMusicInfo(msg.raw_message, msg.group_id, msg.user_id, bot)
     await getChuMusicInfo.sedMusicInfoByName(msg.raw_message, msg.group_id, msg.user_id, bot, MessageArray, Record)
     # await bot.api.post_group_msg(msg.group_id, text=searchChuMusicInfo.writeMusicOtherName(msg.raw_message))
-    await mirrorImage.send_mirrored_image(bot, msg.group_id, msg.user_id, msg, Reply, Image, Text)
 
 @bot.on_notice()
 async def on_notice(notice):
@@ -100,6 +100,9 @@ async def on_notice(notice):
     if notice["notice_type"] == "group_increase":
         group_id = notice["group_id"]
         user_id = notice["user_id"]
+        if user_id == BOT_QQ:
+            await bot.api.post_group_msg(group_id=group_id, text="你问我是谁你觉得我是谁我就是谁但是我觉得我是谁我就是谁")
+            return
         await bot.api.post_group_msg(group_id=group_id, text="欢迎新来的🐲👃！！！", at=user_id)
     if notice["notice_type"] == "group_decrease":
         group_id = notice["group_id"]

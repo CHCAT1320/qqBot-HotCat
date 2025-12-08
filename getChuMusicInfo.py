@@ -1,12 +1,12 @@
 import requests
 import json
-import sys
-import io
+# import sys
+# import io
 
-# 强制标准流使用 UTF-8 编码
-sys.stdin = io.TextIOWrapper(sys.stdin.buffer, encoding='utf-8')
-# sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', line_buffering=True)
-sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
+# # 强制标准流使用 UTF-8 编码
+# sys.stdin = io.TextIOWrapper(sys.stdin.buffer, encoding='utf-8')
+# # sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', line_buffering=True)
+# sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
 
 def getChunithmSongs():
     # API地址
@@ -67,32 +67,33 @@ def searchChunithmSong(name):
     global songId
 
     for song in songData:
-        if song["title"] == name:
+        if song["title"].lower().replace(" ", "") == name.lower().replace(" ", ""):
             songId = song["id"]
             # 难度解析
             difficulty = ""
             charter = ""
             detailedDifficulty = ""
             for d in song["difficulties"]:
-                difficulty += f"{d['level']}/"
-                charter += f"{d['note_designer']}/"
-                detailedDifficulty += f"{d['level_value']}/"
-            difficulty = difficulty[:-1]
-            charter = charter[:-1]
-            detailedDifficulty = detailedDifficulty[:-1]
+                difficulty += f"{d['level']} / "
+                charter += f"{d['note_designer']} / "
+                detailedDifficulty += f"{d['level_value']} / "
+            difficulty = difficulty[:-2]
+            charter = charter[:-2]
+            detailedDifficulty = detailedDifficulty[:-2]
             songInfo =  (
+                "\n[ 中二节奏 ] 曲目详情\n"
                 f"\n曲名：{song['title']}"
-                f"\nid：{song['id']}"
+                f"\n曲目id：{song['id']}"
                 f"\n艺术家：{song['artist']}"
                 f"\n分类：{song['genre']}"
-                f"\nbpm：{song['bpm']}"
+                f"\nBPM：{song['bpm']}"
                 f"\n定数：{difficulty}"
                 f"\n详细定数：{detailedDifficulty}"
                 f"\n谱师：{charter}"
             )
             return  songInfo
     for alias in songAliasData:
-        if name in alias["aliases"]:
+        if name.lower().replace(" ", "") in [item.replace(" ", "").lower() for item in alias.get("aliases", [])]:
             for song in songData:
                 if song["id"] == alias["song_id"]:
                     songId = song["id"]
@@ -101,24 +102,26 @@ def searchChunithmSong(name):
                     charter = ""
                     detailedDifficulty = ""
                     for d in song["difficulties"]:
-                        difficulty += f"{d['level']}/"
-                        charter += f"{d['note_designer']}/"
-                        detailedDifficulty += f"{d['level_value']}/"
-                    difficulty = difficulty[:-1]
-                    charter = charter[:-1]
-                    detailedDifficulty = detailedDifficulty[:-1]
+                        difficulty += f"{d['level']} / "
+                        charter += f"{d['note_designer']} / "
+                        detailedDifficulty += f"{d['level_value']} / "
+                    difficulty = difficulty[:-2]
+                    charter = charter[:-2]
+                    detailedDifficulty = detailedDifficulty[:-2]
                     songInfo =  (
+                        "\n[ 中二节奏 ] 曲目详情\n"
                         f"\n曲名：{song['title']}"
-                        f"\nid：{song['id']}"
+                        f"\n曲目id：{song['id']}"
                         f"\n艺术家：{song['artist']}"
                         f"\n分类：{song['genre']}"
-                        f"\nbpm：{song['bpm']}"
+                        f"\nBPM：{song['bpm']}"
                         f"\n定数：{difficulty}"
                         f"\n详细定数：{detailedDifficulty}"
                         f"\n谱师：{charter}\n"
                     )
                     return  songInfo
-    return "未找到歌曲：" + name
+    songId = ""
+    return "未找到歌曲：" + name + "\nTips: 支持的查找方式有: 曲名、别名"
 
 async def sedMusicInfoByName(msg, group_id, user_id, bot, MessageArray, Record):
     global songId
@@ -126,7 +129,7 @@ async def sedMusicInfoByName(msg, group_id, user_id, bot, MessageArray, Record):
         musicName = msg[:-4]
         answer = searchChunithmSong(musicName)
         if songId == "":
-            await bot.api.post_group_msg(group_id, text="\n未搜索到歌曲：" + msg[:-4], at=user_id)
+            await bot.api.post_group_msg(group_id, text="\n未搜索到歌曲：" + msg[:-4] + "\nTips: 支持的查找方式有: 曲名、别名，如果有需要提交的别名，请到https://maimai.lxns.net/alias/vote 提交", at=user_id)
             return
         await bot.api.post_group_msg(group_id, rtf=MessageArray().add_text(answer).add_image(f"https://assets2.lxns.net/chunithm/jacket/{songId}.png"), at=user_id)
         # await bot.api.post_group_msg(group_id,rtf=MessageArray().add_record(f"https://assets2.lxns.net/chunithm/music/{songId}.mp3"))
