@@ -68,7 +68,7 @@ class jiting:
                 jitingList = self.groupInfo["jitingList"]
                 if not jitingList:
                     return "当前群聊没有机厅"
-                result = "机厅列表："
+                result = "中二节奏 机厅列表："
                 for jiting in jitingList:
                     if jiting["name1"] != "":
                         result += f"\n{jiting['name']}({jiting['name1']})（{jiting['members']}人）\n更新时间：{jiting['update_time']} 报告人：{jiting['reporter']}"
@@ -100,7 +100,7 @@ class jiting:
                     if unicodedata.category(char).startswith('C'):
                         return "机厅别名不能包含控制字符"
                 for jiting in self.groupInfo["jitingList"]:
-                    if jiting["name"] == name:
+                    if jiting["name"] == name or jiting["name1"] == name:
                         jiting["name1"] = name1
                         self.writeGroupJsonFile(self.groupInfo)
                         return f"机厅 {name} 的别名已设置为 {name1}"
@@ -127,7 +127,10 @@ class jiting:
                         return f"机厅 {jiting_info['name']}({jiting_info['name1']}) 爆炸了，无人幸免, 人数已归零"
 
                     self.writeGroupJsonFile(self.groupInfo)
+                    jiting_info["update_time"] = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+                    jiting_info["reporter"] = self.sender_name
                     return f"机厅 {jiting_info['name']}({jiting_info['name1']}) 人数更新为 {jiting_info['members']}"
+                
 
             return
 

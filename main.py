@@ -21,6 +21,7 @@ import jiting
 import getGameSrc
 import getChuMusicInfo
 import mirrorImage
+import thefakeMsg
 
 _log = get_log()
 
@@ -66,6 +67,8 @@ async def on_group_message(msg: GroupMessage):
     # await searchChuMusicInfo.getMusicInfo(msg.raw_message, msg.group_id, msg.user_id, bot)
     await getChuMusicInfo.sedMusicInfoByName(msg.raw_message, msg.group_id, msg.user_id, bot, MessageArray, Record)
     # await bot.api.post_group_msg(msg.group_id, text=searchChuMusicInfo.writeMusicOtherName(msg.raw_message))
+
+    await thefakeMsg.send_fake_msg(bot, msg.group_id, msg.user_id, msg)
 
 @bot.on_notice()
 async def on_notice(notice):
