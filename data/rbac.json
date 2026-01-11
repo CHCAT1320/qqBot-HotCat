@@ -37,9 +37,9 @@
     "permissions_trie_paths": {},
     "role_inheritance": {
         "admin": [
-            "root"
+            "user"
         ],
-        "user": [
+        "root": [
             "admin"
         ]
     }

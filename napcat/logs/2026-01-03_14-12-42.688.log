@@ -1,0 +1,17 @@
+01-03 14:12:42 [info] [FFmpeg] 检查 Native Addon 可用性...
+01-03 14:12:42 [info] [FFmpeg] ✓ 使用 Native Addon 适配器
+01-03 14:12:42 [info] [StdOut] 已重定向到命名管道: \\.\pipe\NapCat_43912
+01-03 14:12:43 [info] [PacketHandler] 加载成功
+01-03 14:12:43 [info] [PacketHandler] 初始化成功
+01-03 14:12:43 [info] [NapCat] [Core] NapCat.Core Version: 4.9.81
+01-03 14:12:44 [info] [NapCat] [WebUi] WebUi Token: Chcat13201145!
+01-03 14:12:44 [info] [NapCat] [WebUi] WebUi User Panel Url: http://127.0.0.1:6099/webui?token=Chcat13201145!
+01-03 14:12:44 [info] [NapCat] [WebUi] WebUi User Panel Url: http://0.0.0.0:6099/webui?token=Chcat13201145!
+01-03 14:12:44 [info] 等待网络连接...
+01-03 14:12:44 [info] 网络已连接
+01-03 14:12:44 [info] 正在快速登录  703263936
+01-03 14:12:50 [debug] 本账号数据/缓存目录： E:\QQwj\NapCat\data
+01-03 14:12:50 [debug] [Core] [Config] 配置文件D:\1code\qqbot\napcat\config\napcat_703263936.json加载 {"fileLog":false,"consoleLog":true,"fileLogLevel":"debug","consoleLogLevel":"info","packetBackend":"auto","packetServer":"","o3HookMode":1}
+01-03 14:12:50 [info] [Core] [Packet] 使用 NativePacketClient 作为后端
+01-03 14:13:05 [info] 正在快速登录  703263936
+01-03 14:13:05 [error] 当前账号(703263936)已登录,无法重复登录

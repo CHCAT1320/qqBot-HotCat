@@ -22,6 +22,8 @@ import getGameSrc
 import getChuMusicInfo
 import mirrorImage
 import thefakeMsg
+import pockSomebody
+import record2file
 
 _log = get_log()
 
@@ -50,13 +52,19 @@ async def on_group_message(msg: GroupMessage):
     await bot.api.post_group_msg(msg.group_id, text=littleFunctionsI.openOrCloseFuncs(msg.raw_message))
     await littleFunctionsI.why(bot, msg.raw_message)
     
-    jitingI = jiting.jiting(msg.group_id, msg.user_id, msg.sender.nickname, msg.sender.role)
-    await bot.api.post_group_msg(msg.group_id, text=jitingI.addJiting(msg.raw_message))
-    await bot.api.post_group_msg(msg.group_id, text=jitingI.getJitingList(msg.raw_message))
-    await bot.api.post_group_msg(msg.group_id, text=jitingI.setJiTingName1(msg.raw_message))
-    await bot.api.post_group_msg(msg.group_id, text=jitingI.updateJitingMembers(msg.raw_message))
-    await bot.api.post_group_msg(msg.group_id, text=jitingI.lookUpJiting(msg.raw_message))
-    await bot.api.post_group_msg(msg.group_id, text=jitingI.deleteJiting(msg.raw_message))
+    # jitingI = jiting.jiting(msg.group_id, msg.user_id, msg.sender.nickname, msg.sender.role)
+    # await bot.api.post_group_msg(msg.group_id, text=jitingI.addJiting(msg.raw_message))
+    # await bot.api.post_group_msg(msg.group_id, text=jitingI.getJitingList(msg.raw_message))
+    # await bot.api.post_group_msg(msg.group_id, text=jitingI.setJiTingName1(msg.raw_message))
+    # await bot.api.post_group_msg(msg.group_id, text=jitingI.updateJitingMembers(msg.raw_message))
+    # await bot.api.post_group_msg(msg.group_id, text=jitingI.lookUpJiting(msg.raw_message))
+    # await bot.api.post_group_msg(msg.group_id, text=jitingI.deleteJiting(msg.raw_message))
+    await jiting.addJitingToGroup(bot, msg.group_id, msg.user_id, msg, msg.sender.role)
+    await jiting.addjitingAliases(bot, msg.group_id, msg.user_id, msg, msg.sender.role)
+    await jiting.updateJitigMembers(bot, msg.group_id, msg.user_id, msg, msg.sender.nickname)
+    await jiting.lookUpJiting(bot, msg.group_id, msg.user_id, msg)
+    await jiting.lookUpOneJiting(bot, msg.group_id, msg.user_id, msg)
+    await jiting.getshopinfo(bot, msg.group_id, msg.user_id, msg)
     
     await bot.api.post_group_msg(msg.group_id, text=help.help(msg.raw_message))
 
@@ -68,7 +76,9 @@ async def on_group_message(msg: GroupMessage):
     await getChuMusicInfo.sedMusicInfoByName(msg.raw_message, msg.group_id, msg.user_id, bot, MessageArray, Record)
     # await bot.api.post_group_msg(msg.group_id, text=searchChuMusicInfo.writeMusicOtherName(msg.raw_message))
 
-    await thefakeMsg.send_fake_msg(bot, msg.group_id, msg.user_id, msg)
+    await thefakeMsg.send_fake_msg(bot, msg.group_id, msg.user_id, msg, msg.sender.nickname)
+    await pockSomebody.pockSomebody(msg.raw_message, msg.group_id, msg.user_id, bot)
+    await record2file.record2file(bot, msg.group_id, msg.user_id, msg)
 
 @bot.on_notice()
 async def on_notice(notice):
@@ -94,10 +104,18 @@ async def on_notice(notice):
                 await bot.api.set_group_ban(group_id=group_id, user_id=sender_id, duration=1*60)
             if reply_text == "别戳了，你是不是喜欢我？":
                 await bot.api.send_poke(group_id=group_id, user_id=sender_id)
-                await bot.api.send_like(user_id=sender_id, times=50)
+                await bot.api.send_like(user_id=sender_id, times=10)
             if reply_text == "我喜欢你":
                 await bot.api.send_poke(group_id=group_id, user_id=sender_id)
-                await bot.api.send_like(user_id=sender_id, times=50)
+                await bot.api.send_like(user_id=sender_id, times=10)
+            isSendRecord = random.choice([True, False])
+            if isSendRecord:
+                files = []
+                for fn in os.listdir("./pockAudio"):
+                    files.append(os.path.join("./pockAudio", fn))
+                file = random.choice(files)
+                record = Record(file=file)
+                await bot.api.post_group_msg(group_id,rtf=MessageArray().add_by_segment(record))
         else:
             await bot.api.post_private_msg(user_id=sender_id, text=reply_text)
     if notice["notice_type"] == "group_increase":

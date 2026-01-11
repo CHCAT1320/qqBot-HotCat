@@ -2,6 +2,7 @@ import requests
 from PIL import Image, ImageSequence
 from io import BytesIO
 import base64
+from ncatbot.core.event.message_segment import PlainText
 
 def mirrorImage(imageUrl, mirrorSide="left"):
     """
@@ -153,25 +154,34 @@ def mirrorImage(imageUrl, mirrorSide="left"):
 
 async def send_mirrored_image(bot, group_id, user_id, msg, Reply, Image, Text):
     d = "right"
-    msgText = msg.raw_message
-    # for i in msg.message:
-        # if isinstance(i, Text):
-            # msgText = i.text
-    if msgText.startswith("镜像"):
-        await bot.api.post_group_msg(group_id, text="测试")
-        text = msgText[2:]
-        direction_map = {
-            "左": "left",
-            "右": "right",
-            "上": "top",
-            "下": "down",
-            "左上": "topLeft",
-            "右上": "topRight",
-            "左下": "downLeft",
-            "右下": "downRight"
-        }
-        d = direction_map.get(text, "right")  # 使用字典更简洁
-    else:
+    try:
+        # msgText
+        for i in msg.message:
+            if isinstance(i, Text):
+                msgText = i.text
+            if isinstance(i, PlainText):
+                msgText = i.text
+        # if "@" in msgText:
+        #     msgText = msgText.split(" ")[1]
+        if " " in msgText:
+            msgText = msgText.replace(" ", "")
+        if msgText.startswith("镜像"):
+            # await bot.api.post_group_msg(group_id, text="测试")
+            text = msgText[2:]
+            direction_map = {
+                "左": "left",
+                "右": "right",
+                "上": "top",
+                "下": "down",
+                "左上": "topLeft",
+                "右上": "topRight",
+                "左下": "downLeft",
+                "右下": "downRight"
+            }
+            d = direction_map.get(text, "right")  # 使用字典更简洁
+        else:
+            return
+    except:
         return
     
     for i in msg.message:

@@ -1,1 +1,7 @@
-{}
+{
+    "littleFunctions": {
+        "numberAddOne": true,
+        "bracketPair": true,
+        "why": false
+    }
+}

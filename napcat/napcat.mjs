@@ -7,6 +7,7 @@ import { ReadableStream as ReadableStream$1 } from 'node:stream/web';
 import * as stream$3 from 'node:stream';
 import stream__default, { Readable, PassThrough, pipeline } from 'node:stream';
 import fs$1, { open, stat, constants as constants$1, writeFile, unlink, readdir as readdir$1 } from 'node:fs/promises';
+import { createRequire } from 'module';
 import https$1 from 'node:https';
 import http from 'node:http';
 import * as crypto$2 from 'crypto';
@@ -26,7 +27,7 @@ import zlib__default from 'node:zlib';
 import require$$0$3, { promisify } from 'util';
 import require$$0$4, { EventEmitter as EventEmitter$2 } from 'events';
 import require$$0$5 from 'buffer';
-import require$$1$2, { gunzipSync } from 'zlib';
+import require$$1$2, { gunzipSync as gunzipSync$1 } from 'zlib';
 import require$$1$1 from 'string_decoder';
 import require$$0$6, { createServer as createServer$1 } from 'http';
 import * as https from 'https';
@@ -38,7 +39,7 @@ import { WebSocketServer, WebSocket } from 'ws';
 import * as net$1 from 'net';
 import { Socket } from 'net';
 import { fork, execFile } from 'child_process';
-import { Worker } from 'worker_threads';
+import { Worker as Worker$1 } from 'worker_threads';
 import { C as ConoutWorkerMessage, g as getWorkerPipeName } from './conout-D9oph_Le.js';
 import { fileURLToPath as fileURLToPath$1 } from 'node:url';
 import * as tty from 'tty';
@@ -4516,13 +4517,13 @@ require_Reflect();
 
 function e(e){return ("object"==typeof e&&null!==e||"function"==typeof e)&&"function"==typeof e.then}function t$1(e){switch(typeof e){case "string":case "symbol":return e.toString();case "function":return e.name;default:throw new Error(`Unexpected ${typeof e} service id type`)}}const n$1=Symbol.for("@inversifyjs/common/islazyServiceIdentifier");class r{[n$1];#e;constructor(e){this.#e=e,this[n$1]=true;}static is(e){return "object"==typeof e&&null!==e&&true===e[n$1]}unwrap(){return this.#e()}}
 
-function c$2(t,n,e){return Reflect.getOwnMetadata(n,t,e)}function a$1(t,n,e,u){Reflect.defineMetadata(n,e,t,u);}function i(t,n,e,u,f){const r=u(c$2(t,n,f)??e());Reflect.defineMetadata(n,r,t,f);}
+function c$2(t,n,e){return Reflect.getOwnMetadata(n,t,e)}function a$1(t,n,e,u){Reflect.defineMetadata(n,e,t,u);}function i$1(t,n,e,u,f){const r=u(c$2(t,n,f)??e());Reflect.defineMetadata(n,r,t,f);}
 
-const a="@inversifyjs/container/bindingId";function c$1(){const i$1=c$2(Object,a)??0;return i$1===Number.MAX_SAFE_INTEGER?a$1(Object,a,Number.MIN_SAFE_INTEGER):i(Object,a,()=>i$1,e=>e+1),i$1}const d={Request:"Request",Singleton:"Singleton",Transient:"Transient"},u={ConstantValue:"ConstantValue",DynamicValue:"DynamicValue",Factory:"Factory",Instance:"Instance",Provider:"Provider",ResolvedValue:"ResolvedValue",ServiceRedirection:"ServiceRedirection"};function*l$1(...e){for(const t of e)yield*t;}class p{#e;#t;#n;constructor(e){this.#e=new Map,this.#t={};for(const t of Reflect.ownKeys(e))this.#t[t]=new Map;this.#n=e;}add(e,t){this.#i(e).push(t);for(const n of Reflect.ownKeys(t))this.#o(n,t[n]).push(e);}clone(){const e=this.#r(),t=this.#s(),n=Reflect.ownKeys(this.#n),i=this._buildNewInstance(this.#n);this.#a(this.#e,i.#e,e,t);for(const t of n)this.#c(this.#t[t],i.#t[t],e);return i}get(e,t){return this.#t[e].get(t)}getAllKeys(e){return this.#t[e].keys()}removeByRelation(e,t){const n=this.get(e,t);if(void 0===n)return;const i=new Set(n);for(const n of i){const i=this.#e.get(n);if(void 0===i)throw new Error("Expecting model relation, none found");for(const o of i)o[e]===t&&this.#d(n,o);this.#e.delete(n);}}_buildNewInstance(e){return new p(e)}_cloneModel(e){return e}_cloneRelation(e){return e}#r(){const e=new Map;for(const t of this.#e.keys()){const n=this._cloneModel(t);e.set(t,n);}return e}#s(){const e=new Map;for(const t of this.#e.values())for(const n of t){const t=this._cloneRelation(n);e.set(n,t);}return e}#i(e){let t=this.#e.get(e);return void 0===t&&(t=[],this.#e.set(e,t)),t}#o(e,t){let n=this.#t[e].get(t);return void 0===n&&(n=[],this.#t[e].set(t,n)),n}#u(e,t){const n=t.get(e);if(void 0===n)throw new Error("Expecting model to be cloned, none found");return n}#l(e,t){const n=t.get(e);if(void 0===n)throw new Error("Expecting relation to be cloned, none found");return n}#c(e,t,n){for(const[i,o]of e){const e=new Array;for(const t of o)e.push(this.#u(t,n));t.set(i,e);}}#a(e,t,n,i){for(const[o,r]of e){const e=new Array;for(const t of r)e.push(this.#l(t,i));t.set(this.#u(o,n),e);}}#d(e,t){for(const n of Reflect.ownKeys(t))this.#p(e,n,t[n]);}#p(e,t,n){const i=this.#t[t].get(n);if(void 0!==i){const o=i.indexOf(e);-1!==o&&i.splice(o,1),0===i.length&&this.#t[t].delete(n);}}}var f;!function(e){e.moduleId="moduleId",e.serviceId="serviceId";}(f||(f={}));class v{#f;#v;constructor(e,t){this.#f=t??new p({moduleId:{isOptional:true},serviceId:{isOptional:false}}),this.#v=e;}static build(e){return new v(e)}add(e,t){this.#f.add(e,t);}clone(){return new v(this.#v,this.#f.clone())}get(e){const t=[],n=this.#f.get(f.serviceId,e);void 0!==n&&t.push(n);const i=this.#v()?.get(e);if(void 0!==i&&t.push(i),0!==t.length)return l$1(...t)}removeAllByModuleId(e){this.#f.removeByRelation(f.moduleId,e);}removeAllByServiceId(e){this.#f.removeByRelation(f.serviceId,e);}}const h="@inversifyjs/core/classMetadataReflectKey";function g$1(){return {constructorArguments:[],lifecycle:{postConstructMethodNames:new Set,preDestroyMethodNames:new Set},properties:new Map,scope:void 0}}const m="@inversifyjs/core/pendingClassMetadataCountReflectKey";const y=Symbol.for("@inversifyjs/core/InversifyCoreError");let M$1 = class M extends Error{[y];kind;constructor(e,t,n){super(t,n),this[y]=true,this.kind=e;}static is(e){return "object"==typeof e&&null!==e&&true===e[y]}static isErrorOfKind(e,t){return M.is(e)&&e.kind===t}};var I$1,b,w,C$1,S$1;function N$1(t){const n=c$2(t,h)??g$1();if(!function(t){const n=c$2(t,m);return void 0!==n&&0!==n}(t))return function(e,t){const n=[];if(t.length<e.length)throw new M$1(I$1.missingInjectionDecorator,`Found unexpected missing metadata on type "${e.name}". "${e.name}" constructor requires at least ${e.length.toString()} arguments, found ${t.length.toString()} instead.\nAre you using @inject, @multiInject or @unmanaged decorators in every non optional constructor argument?\n\nIf you're using typescript and want to rely on auto injection, set "emitDecoratorMetadata" compiler option to true`);for(let e=0;e<t.length;++e) void 0===t[e]&&n.push(e);if(n.length>0)throw new M$1(I$1.missingInjectionDecorator,`Found unexpected missing metadata on type "${e.name}" at constructor indexes "${n.join('", "')}".\n\nAre you using @inject, @multiInject or @unmanaged decorators at those indexes?\n\nIf you're using typescript and want to rely on auto injection, set "emitDecoratorMetadata" compiler option to true`)}(t,n.constructorArguments),n;!function(e,t){const n=[];for(let i=0;i<t.constructorArguments.length;++i){const o=t.constructorArguments[i];void 0!==o&&o.kind!==b.unknown||n.push(`  - Missing or incomplete metadata for type "${e.name}" at constructor argument with index ${i.toString()}.\nEvery constructor parameter must be decorated either with @inject, @multiInject or @unmanaged decorator.`);}for(const[i,o]of t.properties)o.kind===b.unknown&&n.push(`  - Missing or incomplete metadata for type "${e.name}" at property "${i.toString()}".\nThis property must be decorated either with @inject or @multiInject decorator.`);if(0===n.length)throw new M$1(I$1.unknown,`Unexpected class metadata for type "${e.name}" with uncompletion traces.\nThis might be caused by one of the following reasons:\n\n1. A third party library is targeting inversify reflection metadata.\n2. A bug is causing the issue. Consider submiting an issue to fix it.`);throw new M$1(I$1.missingInjectionDecorator,`Invalid class metadata at type ${e.name}:\n\n${n.join("\n\n")}`)}(t,n);}function P$1(e,t){const n=N$1(t).scope??e.scope;return {cache:{isRight:false,value:void 0},id:c$1(),implementationType:t,isSatisfiedBy:()=>true,moduleId:void 0,onActivation:void 0,onDeactivation:void 0,scope:n,serviceIdentifier:t,type:u.Instance}}function A$2(e){return e.isRight?{isRight:true,value:e.value}:e}function R(e){switch(e.type){case u.ConstantValue:case u.DynamicValue:return function(e){return {cache:A$2(e.cache),id:e.id,isSatisfiedBy:e.isSatisfiedBy,moduleId:e.moduleId,onActivation:e.onActivation,onDeactivation:e.onDeactivation,scope:e.scope,serviceIdentifier:e.serviceIdentifier,type:e.type,value:e.value}}(e);case u.Factory:return function(e){return {cache:A$2(e.cache),factory:e.factory,id:e.id,isSatisfiedBy:e.isSatisfiedBy,moduleId:e.moduleId,onActivation:e.onActivation,onDeactivation:e.onDeactivation,scope:e.scope,serviceIdentifier:e.serviceIdentifier,type:e.type}}(e);case u.Instance:return function(e){return {cache:A$2(e.cache),id:e.id,implementationType:e.implementationType,isSatisfiedBy:e.isSatisfiedBy,moduleId:e.moduleId,onActivation:e.onActivation,onDeactivation:e.onDeactivation,scope:e.scope,serviceIdentifier:e.serviceIdentifier,type:e.type}}(e);case u.Provider:return function(e){return {cache:A$2(e.cache),id:e.id,isSatisfiedBy:e.isSatisfiedBy,moduleId:e.moduleId,onActivation:e.onActivation,onDeactivation:e.onDeactivation,provider:e.provider,scope:e.scope,serviceIdentifier:e.serviceIdentifier,type:e.type}}(e);case u.ResolvedValue:return function(e){return {cache:A$2(e.cache),factory:e.factory,id:e.id,isSatisfiedBy:e.isSatisfiedBy,metadata:e.metadata,moduleId:e.moduleId,onActivation:e.onActivation,onDeactivation:e.onDeactivation,scope:e.scope,serviceIdentifier:e.serviceIdentifier,type:e.type}}(e);case u.ServiceRedirection:return function(e){return {id:e.id,isSatisfiedBy:e.isSatisfiedBy,moduleId:e.moduleId,serviceIdentifier:e.serviceIdentifier,targetServiceIdentifier:e.targetServiceIdentifier,type:e.type}}(e)}}!function(e){e[e.injectionDecoratorConflict=0]="injectionDecoratorConflict",e[e.missingInjectionDecorator=1]="missingInjectionDecorator",e[e.planning=2]="planning",e[e.resolution=3]="resolution",e[e.unknown=4]="unknown";}(I$1||(I$1={})),function(e){e[e.unknown=32]="unknown";}(b||(b={})),function(e){e.id="id",e.moduleId="moduleId",e.serviceId="serviceId";}(w||(w={}));let x$2 = class x extends p{_buildNewInstance(e){return new x(e)}_cloneModel(e){return R(e)}};let T$2 = class T{#h;#g;#v;constructor(e,t,n){this.#g=n??new x$2({id:{isOptional:false},moduleId:{isOptional:true},serviceId:{isOptional:false}}),this.#v=e,this.#h=t;}static build(e,t){return new T(e,t)}clone(){return new T(this.#v,this.#h,this.#g.clone())}get(e){const t=this.getNonParentBindings(e)??this.#v()?.get(e);if(void 0!==t)return t;const n=this.#m(e);return void 0===n?n:[n]}*getChained(e){const t=this.getNonParentBindings(e);void 0!==t&&(yield*t);const n=this.#v();if(void 0===n){if(void 0===t){const t=this.#m(e);void 0!==t&&(yield t);}}else yield*n.getChained(e);}getBoundServices(){const e=new Set(this.#g.getAllKeys(w.serviceId)),t=this.#v();if(void 0!==t)for(const n of t.getBoundServices())e.add(n);return e}getById(e){return this.#g.get(w.id,e)??this.#v()?.getById(e)}getByModuleId(e){return this.#g.get(w.moduleId,e)??this.#v()?.getByModuleId(e)}getNonParentBindings(e){return this.#g.get(w.serviceId,e)}getNonParentBoundServices(){return this.#g.getAllKeys(w.serviceId)}removeById(e){this.#g.removeByRelation(w.id,e);}removeAllByModuleId(e){this.#g.removeByRelation(w.moduleId,e);}removeAllByServiceId(e){this.#g.removeByRelation(w.serviceId,e);}set(e){const t={[w.id]:e.id,[w.serviceId]:e.serviceIdentifier};void 0!==e.moduleId&&(t[w.moduleId]=e.moduleId),this.#g.add(e,t);}#m(e){if(void 0===this.#h||"function"!=typeof e)return;const t=P$1(this.#h,e);return this.set(t),t}};!function(e){e.moduleId="moduleId",e.serviceId="serviceId";}(C$1||(C$1={}));let j$2 = class j{#y;#v;constructor(e,t){this.#y=t??new p({moduleId:{isOptional:true},serviceId:{isOptional:false}}),this.#v=e;}static build(e){return new j(e)}add(e,t){this.#y.add(e,t);}clone(){return new j(this.#v,this.#y.clone())}get(e){const t=[],n=this.#y.get(C$1.serviceId,e);void 0!==n&&t.push(n);const i=this.#v()?.get(e);if(void 0!==i&&t.push(i),0!==t.length)return l$1(...t)}removeAllByModuleId(e){this.#y.removeByRelation(C$1.moduleId,e);}removeAllByServiceId(e){this.#y.removeByRelation(C$1.serviceId,e);}};!function(e){e[e.multipleInjection=0]="multipleInjection",e[e.singleInjection=1]="singleInjection",e[e.unmanaged=2]="unmanaged";}(S$1||(S$1={}));var E$1;!function(e){e[e.method=0]="method",e[e.parameter=1]="parameter",e[e.property=2]="property";}(E$1||(E$1={}));const K$1="@inversifyjs/core/classIsInjectableFlagReflectKey";const q$1=[Array,BigInt,Boolean,Function,Number,Object,String];function G$1(t){const i$1=c$2(t,"design:paramtypes");void 0!==i$1&&i(t,h,g$1,function(e){return t=>(e.forEach((e,n)=>{var i;void 0!==t.constructorArguments[n]||(i=e,q$1.includes(i))||(t.constructorArguments[n]=function(e){return {isFromTypescriptParamType:true,kind:S$1.singleInjection,name:void 0,optional:false,tags:new Map,value:e}}(e));}),t)}(i$1));}function W$2(i$1){return o=>{!function(n){if(void 0!==c$2(n,K$1))throw new M$1(I$1.injectionDecoratorConflict,`Cannot apply @injectable decorator multiple times at class "${n.name}"`);a$1(n,K$1,true);}(o),G$1(o);}}var fe;function ve(e){if(!(e instanceof Error))return  false;return e instanceof RangeError&&/stack space|call stack|too much recursion/i.test(e.message)||"InternalError"===e.name&&/too much recursion/.test(e.message)}function he(e,t){if(ve(t)){const n=function(e){const t=[...e];if(0===t.length)return "(No dependency trace)";return t.map(t$1).join(" -> ")}(function(e){const t=new Set;for(const n of e.servicesBranch){if(t.has(n))return [...t,n];t.add(n);}return [...t]}(e));throw new M$1(I$1.planning,`Circular dependency found: ${n}`,{cause:t})}throw t}!function(e){e[e.multipleInjection=0]="multipleInjection",e[e.singleInjection=1]="singleInjection";}(fe||(fe={}));const ge=Symbol.for("@inversifyjs/core/LazyPlanServiceNode");class me{[ge];_serviceIdentifier;_serviceNode;constructor(e,t){this[ge]=true,this._serviceNode=e,this._serviceIdentifier=t;}get bindings(){return this._getNode().bindings}get isContextFree(){return this._getNode().isContextFree}get serviceIdentifier(){return this._serviceIdentifier}set bindings(e){this._getNode().bindings=e;}set isContextFree(e){this._getNode().isContextFree=e;}static is(e){return "object"==typeof e&&null!==e&&true===e[ge]}invalidate(){this._serviceNode=void 0;}isExpanded(){return void 0!==this._serviceNode}_getNode(){return void 0===this._serviceNode&&(this._serviceNode=this._buildPlanServiceNode()),this._serviceNode}}class ye{#M;constructor(e){this.#M=e;}get name(){return this.#M.elem.name}get serviceIdentifier(){return this.#M.elem.serviceIdentifier}get tags(){return this.#M.elem.tags}getAncestor(){if(this.#M.elem.getAncestorsCalled=true,void 0!==this.#M.previous)return new ye(this.#M.previous)}}function Me(e,t,n){const i=n?.customServiceIdentifier??t.serviceIdentifier,o=(true===n?.chained?[...e.operations.getBindingsChained(i)]:[...e.operations.getBindings(i)??[]]).filter(e=>e.isSatisfiedBy(t));if(0===o.length&&void 0!==e.autobindOptions&&"function"==typeof i){const n=P$1(e.autobindOptions,i);e.operations.setBinding(n),n.isSatisfiedBy(t)&&o.push(n);}return o}class Ie{last;constructor(e){this.last=e;}concat(e){return new Ie({elem:e,previous:this.last})}[Symbol.iterator](){let e=this.last;return {next:()=>{if(void 0===e)return {done:true,value:void 0};const t=e.elem;return e=e.previous,{done:false,value:t}}}}}function be(e){const t=new Map;return void 0!==e.rootConstraints.tag&&t.set(e.rootConstraints.tag.key,e.rootConstraints.tag.value),new Ie({elem:{getAncestorsCalled:false,name:e.rootConstraints.name,serviceIdentifier:e.rootConstraints.serviceIdentifier,tags:t},previous:void 0})}function we(e){return void 0!==e.redirections}function Ce(e,t,n,i){const r=n.elem.serviceIdentifier,s=n.previous?.elem.serviceIdentifier;Array.isArray(e)?function(e,t,n,i,r,s){if(0!==e.length){const t=s[s.length-1]??n,a=`Ambiguous bindings found for service: "${t$1(t)}".${Ae(s)}\n\nRegistered bindings:\n\n${e.map(e=>function(e){switch(e.type){case u.Instance:return `[ type: "${e.type}", serviceIdentifier: "${t$1(e.serviceIdentifier)}", scope: "${e.scope}", implementationType: "${e.implementationType.name}" ]`;case u.ServiceRedirection:return `[ type: "${e.type}", serviceIdentifier: "${t$1(e.serviceIdentifier)}", redirection: "${t$1(e.targetServiceIdentifier)}" ]`;default:return `[ type: "${e.type}", serviceIdentifier: "${t$1(e.serviceIdentifier)}", scope: "${e.scope}" ]`}}(e.binding)).join("\n")}\n\nTrying to resolve bindings for "${Ne(n,i)}".${Pe(r)}`;throw new M$1(I$1.planning,a)}t||Se(n,i,r,s);}(e,t,r,s,n.elem,i):function(e,t,n,i,o,r){ void 0!==e||t||Se(n,i,o,r);}(e,t,r,s,n.elem,i);}function Se(e,t,n,i){const r=i[i.length-1]??e,s=`No bindings found for service: "${t$1(r)}".\n\nTrying to resolve bindings for "${Ne(e,t)}".${Ae(i)}${Pe(n)}`;throw new M$1(I$1.planning,s)}function Ne(e,t){return void 0===t?`${t$1(e)} (Root service)`:t$1(t)}function Pe(e){const t=0===e.tags.size?"":`\n- tags:\n  - ${[...e.tags.keys()].map(e=>e.toString()).join("\n  - ")}`;return `\n\nBinding constraints:\n- service identifier: ${t$1(e.serviceIdentifier)}\n- name: ${e.name?.toString()??"-"}${t}`}function Ae(e){return 0===e.length?"":`\n\n- service redirections:\n  - ${e.map(e=>t$1(e)).join("\n  - ")}`}function Re(e,t,n,i){if(1===e.redirections.length){const[o]=e.redirections;return void(we(o)&&Re(o,t,n,[...i,o.binding.targetServiceIdentifier]))}Ce(e.redirections,t,n,i);}function xe(e,t,n){if(Array.isArray(e.bindings)&&1===e.bindings.length){const[i]=e.bindings;return void(we(i)&&Re(i,t,n,[i.binding.targetServiceIdentifier]))}Ce(e.bindings,t,n,[]);}function Te(e){return r.is(e)?e.unwrap():e}function je(e){return (t,n,i)=>{const o=Te(i.value),r=n.concat({getAncestorsCalled:false,name:i.name,serviceIdentifier:o,tags:i.tags}),s=new ye(r.last),a=i.kind===S$1.multipleInjection&&i.chained,c=Me(t,s,{chained:a}),d=[],u={bindings:d,isContextFree:true,serviceIdentifier:o};if(d.push(...e(t,r,c,u,a)),u.isContextFree=!r.last.elem.getAncestorsCalled,i.kind===S$1.singleInjection){xe(u,i.optional,r.last);const[e]=d;u.bindings=e;}return u}}function Be(e){return (t,n,i)=>{const o=Te(i.value),r=n.concat({getAncestorsCalled:false,name:i.name,serviceIdentifier:o,tags:i.tags}),s=new ye(r.last),a=i.kind===fe.multipleInjection&&i.chained,c=Me(t,s,{chained:a}),d=[],u={bindings:d,isContextFree:true,serviceIdentifier:o};if(d.push(...e(t,r,c,u,a)),u.isContextFree=!r.last.elem.getAncestorsCalled,i.kind===fe.singleInjection){xe(u,i.optional,r.last);const[e]=d;u.bindings=e;}return u}}function Fe(e){const t=function(e){return (t,n,i)=>{const o={binding:n,classMetadata:t.operations.getClassMetadata(n.implementationType),constructorParams:[],propertyParams:new Map},r={autobindOptions:t.autobindOptions,node:o,operations:t.operations,servicesBranch:t.servicesBranch};return e(r,i)}}(e),n=function(e){return (t,n,i)=>{const o={binding:n,params:[]},r={autobindOptions:t.autobindOptions,node:o,operations:t.operations,servicesBranch:t.servicesBranch};return e(r,i)}}(e),i=(e,i,r,s,a)=>{const c=we(s)?s.binding.targetServiceIdentifier:s.serviceIdentifier;e.servicesBranch.push(c);const d=[];for(const s of r)switch(s.type){case u.Instance:d.push(t(e,s,i));break;case u.ResolvedValue:d.push(n(e,s,i));break;case u.ServiceRedirection:{const t=o(e,i,s,a);d.push(t);break}default:d.push({binding:s});}return e.servicesBranch.pop(),d},o=function(e){return (t,n,i,o)=>{const r={binding:i,redirections:[]},s=Me(t,new ye(n.last),{chained:o,customServiceIdentifier:i.targetServiceIdentifier});return r.redirections.push(...e(t,n,s,r,o)),r}}(i);return i}function ke(e,t,n,i){if(void 0!==e&&(me.is(n)&&!n.isExpanded()||n.isContextFree)){const i={tree:{root:n}};t.setPlan(e,i);}else t.setNonCachedServiceNode(n,i);}class $e extends me{#I;#b;#w;#C;constructor(e,t,n,i,o){super(o,Te(i.value)),this.#b=t,this.#I=e,this.#w=n,this.#C=i;}_buildPlanServiceNode(){return this.#b(this.#I,this.#w,this.#C)}}class De extends me{#I;#S;#w;#N;constructor(e,t,n,i,o){super(o,Te(i.value)),this.#I=e,this.#S=t,this.#w=n,this.#N=i;}_buildPlanServiceNode(){return this.#S(this.#I,this.#w,this.#N)}}function Ve(e,t,n,i){const o=function(e,t){const n=function(e,t){return (n,i,o)=>{if(o.kind===S$1.unmanaged)return;const s=function(e){let t;if(0===e.tags.size)t=void 0;else {if(1!==e.tags.size)return;{const[n,i]=e.tags.entries().next().value;t={key:n,value:i};}}const n=r.is(e.value)?e.value.unwrap():e.value;return e.kind===S$1.multipleInjection?{chained:e.chained,isMultiple:true,name:e.name,optional:e.optional,serviceIdentifier:n,tag:t}:{isMultiple:false,name:e.name,optional:e.optional,serviceIdentifier:n,tag:t}}(o);if(void 0!==s){const e=n.operations.getPlan(s);if(void 0!==e&&e.tree.root.isContextFree)return e.tree.root}const a=t(n,i,o),c=new $e(n,e,i,o,a);return ke(s,n.operations,c,{bindingConstraintsList:i,chainedBindings:o.kind===S$1.multipleInjection&&o.chained,optionalBindings:o.optional}),c}}(e,t);return (e,t,i)=>{const o=t.classMetadata;for(const[r,s]of o.constructorArguments.entries())t.constructorParams[r]=n(e,i,s);for(const[r,s]of o.properties){const o=n(e,i,s);void 0!==o&&t.propertyParams.set(r,o);}return e.node}}(e,n),s=function(e,t){const n=function(e,t){return (n,i,o)=>{const s=function(e){let t;if(0===e.tags.size)t=void 0;else {if(1!==e.tags.size)return;{const[n,i]=e.tags.entries().next().value;t={key:n,value:i};}}const n=r.is(e.value)?e.value.unwrap():e.value;return e.kind===fe.multipleInjection?{chained:e.chained,isMultiple:true,name:e.name,optional:e.optional,serviceIdentifier:n,tag:t}:{isMultiple:false,name:e.name,optional:e.optional,serviceIdentifier:n,tag:t}}(o);if(void 0!==s){const e=n.operations.getPlan(s);if(void 0!==e&&e.tree.root.isContextFree)return e.tree.root}const a=t(n,i,o),c=new De(n,e,i,o,a);return ke(s,n.operations,c,{bindingConstraintsList:i,chainedBindings:o.kind===fe.multipleInjection&&o.chained,optionalBindings:o.optional}),c}}(e,t);return (e,t,i)=>{const o=t.binding.metadata;for(const[r,s]of o.arguments.entries())t.params[r]=n(e,i,s);return e.node}}(t,i);return (e,t)=>e.node.binding.type===u.Instance?o(e,e.node,t):s(e,e.node,t)}class Oe extends me{#I;constructor(e,t){super(t,t.serviceIdentifier),this.#I=e;}_buildPlanServiceNode(){return Ue(this.#I)}}const Ee=je(Le),_e=Be(Le),ze=Fe(Ve(Ee,_e,Ee,_e));function Le(e,t,n,i,o){return ze(e,t,n,i,o)}const Ue=function(e){return t=>{const n=be(t),i=new ye(n.last),o=t.rootConstraints.isMultiple&&t.rootConstraints.chained,r=Me(t,i,{chained:o}),s=[],a={bindings:s,isContextFree:true,serviceIdentifier:t.rootConstraints.serviceIdentifier};if(s.push(...e(t,n,r,a,o)),a.isContextFree=!n.last.elem.getAncestorsCalled,!t.rootConstraints.isMultiple){xe(a,t.rootConstraints.isOptional??false,n.last);const[e]=s;a.bindings=e;}return a}}(ze);function Ke(e){try{const t=function(e){return e.rootConstraints.isMultiple?{chained:e.rootConstraints.chained,isMultiple:!0,name:e.rootConstraints.name,optional:e.rootConstraints.isOptional??!1,serviceIdentifier:e.rootConstraints.serviceIdentifier,tag:e.rootConstraints.tag}:{isMultiple:!1,name:e.rootConstraints.name,optional:e.rootConstraints.isOptional??!1,serviceIdentifier:e.rootConstraints.serviceIdentifier,tag:e.rootConstraints.tag}}(e),n=e.operations.getPlan(t);if(void 0!==n)return n;const i=Ue(e),o={tree:{root:new Oe(e,i)}};return e.operations.setPlan(t,o),o}catch(t){he(e,t);}}var qe;!function(e){e.bindingAdded="bindingAdded",e.bindingRemoved="bindingRemoved";}(qe||(qe={}));class Ge{#P;#A;#R;constructor(){this.#P=[],this.#A=8,this.#R=1024;}*[Symbol.iterator](){let e=0;for(const t of this.#P){const n=t.deref();void 0===n?++e:yield n;}this.#P.length>=this.#A&&this.#x(e)&&this.#T(e);}push(e){const t=new WeakRef(e);if(this.#P.push(t),this.#P.length>=this.#A&&this.#P.length%this.#R===0){let e=0;for(const t of this.#P) void 0===t.deref()&&++e;this.#x(e)&&this.#T(e);}}#T(e){const t=new Array(this.#P.length-e);let n=0;for(const e of this.#P)e.deref()&&(t[n++]=e);this.#P=t;}#x(e){return e>=.5*this.#P.length}}const We=Fe(Ve(Ee,_e,function(e,t,n){return Xe(e,t,n)},function(e,t,n){return He(e,t,n)})),Xe=function(e){const t=je(e);return (e,n,i)=>{try{return t(e,n,i)}catch(e){if(M$1.isErrorOfKind(e,I$1.planning))return;throw e}}}(We),He=function(e){const t=Be(e);return (e,n,i)=>{try{return t(e,n,i)}catch(e){if(M$1.isErrorOfKind(e,I$1.planning))return;throw e}}}(We);function Je(e,t,n,i,o){if(me.is(t)&&!t.isExpanded())return {isContextFreeBinding:true,shouldInvalidateServiceNode:false};const r=new ye(i.last);return !n.isSatisfiedBy(r)||i.last.elem.getAncestorsCalled?{isContextFreeBinding:!i.last.elem.getAncestorsCalled,shouldInvalidateServiceNode:false}:function(e,t,n,i,o){let r;try{[r]=We(e,i,[n],t,o);}catch(e){if(ve(e))return {isContextFreeBinding:false,shouldInvalidateServiceNode:true};throw e}return function(e,t){if(Array.isArray(e.bindings))e.bindings.push(t);else {if(void 0!==e.bindings){if(!me.is(e))throw new M$1(I$1.planning,"Unexpected non-lazy plan service node. This is likely a bug in the planning logic. Please, report this issue");return {isContextFreeBinding:true,shouldInvalidateServiceNode:true}}e.bindings=t;}return {isContextFreeBinding:true,shouldInvalidateServiceNode:false}}(t,r)}(e,t,n,i,o)}function Qe(e,t,n,i){if(me.is(e)&&!e.isExpanded())return {bindingNodeRemoved:void 0,isContextFreeBinding:true};const o=new ye(n.last);if(!t.isSatisfiedBy(o)||n.last.elem.getAncestorsCalled)return {bindingNodeRemoved:void 0,isContextFreeBinding:!n.last.elem.getAncestorsCalled};let r;if(Array.isArray(e.bindings))e.bindings=e.bindings.filter(e=>e.binding!==t||(r=e,false));else if(e.bindings?.binding===t)if(r=e.bindings,i)e.bindings=void 0;else {if(!me.is(e))throw new M$1(I$1.planning,"Unexpected non-lazy plan service node. This is likely a bug in the planning logic. Please, report this issue");e.invalidate();}return {bindingNodeRemoved:r,isContextFreeBinding:true}}class Ye{#j;#B;#F;#k;#$;#D;constructor(){this.#j=new Map,this.#B=this.#V(),this.#F=this.#V(),this.#k=this.#V(),this.#$=this.#V(),this.#D=new Ge;}clearCache(){for(const e of this.#O())e.clear();for(const e of this.#D)e.clearCache();}get(e){return void 0===e.name?void 0===e.tag?this.#E(this.#B,e).get(e.serviceIdentifier):this.#E(this.#$,e).get(e.serviceIdentifier)?.get(e.tag.key)?.get(e.tag.value):void 0===e.tag?this.#E(this.#F,e).get(e.serviceIdentifier)?.get(e.name):this.#E(this.#k,e).get(e.serviceIdentifier)?.get(e.name)?.get(e.tag.key)?.get(e.tag.value)}invalidateServiceBinding(e){this.#_(e),this.#z(e),this.#L(e),this.#U(e),this.#K(e);for(const t of this.#D)t.invalidateServiceBinding(e);}set(e,t){ void 0===e.name?void 0===e.tag?this.#E(this.#B,e).set(e.serviceIdentifier,t):this.#q(this.#q(this.#E(this.#$,e),e.serviceIdentifier),e.tag.key).set(e.tag.value,t):void 0===e.tag?this.#q(this.#E(this.#F,e),e.serviceIdentifier).set(e.name,t):this.#q(this.#q(this.#q(this.#E(this.#k,e),e.serviceIdentifier),e.name),e.tag.key).set(e.tag.value,t);}setNonCachedServiceNode(e,t){let n=this.#j.get(e.serviceIdentifier);void 0===n&&(n=new Map,this.#j.set(e.serviceIdentifier,n)),n.set(e,t);}subscribe(e){this.#D.push(e);}#V(){const e=new Array(8);for(let t=0;t<e.length;++t)e[t]=new Map;return e}#G(e,t,n,i){const o=!!(2&t);let r;if(o){r={chained:!!(0&t),isMultiple:o,serviceIdentifier:e.binding.serviceIdentifier};}else r={isMultiple:o,serviceIdentifier:e.binding.serviceIdentifier};return !!(1&t)&&(r.isOptional=true),void 0!==n&&(r.name=n),void 0!==i&&(r.tag=i),{autobindOptions:void 0,operations:e.operations,rootConstraints:r,servicesBranch:[]}}#q(e,t){let n=e.get(t);return void 0===n&&(n=new Map,e.set(t,n)),n}#E(e,t){return e[this.#W(t)]}#O(){return [this.#j,...this.#B,...this.#F,...this.#k,...this.#$]}#W(e){return e.isMultiple?(e.chained?4:0)|(e.optional?1:0)|2:e.optional?1:0}#z(e){for(const[t,n]of this.#F.entries()){const i=n.get(e.binding.serviceIdentifier);if(void 0!==i)for(const[n,o]of i.entries())this.#X(e,o,t,n,void 0);}}#L(e){for(const[t,n]of this.#k.entries()){const i=n.get(e.binding.serviceIdentifier);if(void 0!==i)for(const[n,o]of i.entries())for(const[i,r]of o.entries())for(const[o,s]of r.entries())this.#X(e,s,t,n,{key:i,value:o});}}#H(e){switch(e.binding.type){case u.ServiceRedirection:for(const t of e.redirections)this.#H(t);break;case u.Instance:for(const t of e.constructorParams) void 0!==t&&this.#J(t);for(const t of e.propertyParams.values())this.#J(t);break;case u.ResolvedValue:for(const t of e.params)this.#J(t);}}#J(e){const t=this.#j.get(e.serviceIdentifier);void 0!==t&&t.has(e)&&(t.delete(e),this.#Q(e));}#Q(e){if((!me.is(e)||e.isExpanded())&&void 0!==e.bindings)if(Array.isArray(e.bindings))for(const t of e.bindings)this.#H(t);else this.#H(e.bindings);}#K(e){const t=this.#j.get(e.binding.serviceIdentifier);if(void 0!==t)switch(e.kind){case qe.bindingAdded:for(const[n,i]of t){const t=Je({autobindOptions:void 0,operations:e.operations,servicesBranch:[]},n,e.binding,i.bindingConstraintsList,i.chainedBindings);t.isContextFreeBinding?t.shouldInvalidateServiceNode&&me.is(n)&&(this.#Q(n),n.invalidate()):this.clearCache();}break;case qe.bindingRemoved:for(const[n,i]of t){const t=Qe(n,e.binding,i.bindingConstraintsList,i.optionalBindings);t.isContextFreeBinding?void 0!==t.bindingNodeRemoved&&this.#H(t.bindingNodeRemoved):this.clearCache();}}}#_(e){for(const[t,n]of this.#B.entries()){const i=n.get(e.binding.serviceIdentifier);this.#X(e,i,t,void 0,void 0);}}#U(e){for(const[t,n]of this.#$.entries()){const i=n.get(e.binding.serviceIdentifier);if(void 0!==i)for(const[n,o]of i.entries())for(const[i,r]of o.entries())this.#X(e,r,t,void 0,{key:n,value:i});}}#X(e,t,n,i,o){if(void 0!==t&&me.is(t.tree.root)){const c=this.#G(e,n,i,o);switch(e.kind){case qe.bindingAdded:{const n=(r=c,s=t.tree.root,a=e.binding,me.is(s)&&!s.isExpanded()?{isContextFreeBinding:true,shouldInvalidateServiceNode:false}:Je(r,s,a,be(r),r.rootConstraints.isMultiple&&r.rootConstraints.chained));n.isContextFreeBinding?n.shouldInvalidateServiceNode&&(this.#Q(t.tree.root),t.tree.root.invalidate()):this.clearCache();}break;case qe.bindingRemoved:{const n=function(e,t,n){return me.is(t)&&!t.isExpanded()?{bindingNodeRemoved:void 0,isContextFreeBinding:true}:Qe(t,n,be(e),e.rootConstraints.isOptional??false)}(c,t.tree.root,e.binding);n.isContextFreeBinding?void 0!==n.bindingNodeRemoved&&this.#H(n.bindingNodeRemoved):this.clearCache();}}}var r,s,a;}}function Ze(e,t){if(ve(t)){const n=function(e){const t=[...e];if(0===t.length)return "(No dependency trace)";return t.map(t$1).join(" -> ")}(function(e){const t=e.planResult.tree.root,n=[];function i(e){const t=n.indexOf(e);if(-1!==t){return [...n.slice(t),e].map(e=>e.serviceIdentifier)}n.push(e);try{for(const t of function(e){const t=[],n=e.bindings;if(void 0===n)return t;const i=e=>{if(we(e))for(const t of e.redirections)i(t);else switch(e.binding.type){case u.Instance:{const n=e;for(const e of n.constructorParams)void 0!==e&&t.push(e);for(const e of n.propertyParams.values())t.push(e);break}case u.ResolvedValue:{const n=e;for(const e of n.params)t.push(e);break}}};if(Array.isArray(n))for(const e of n)i(e);else i(n);return t}(e)){const e=i(t);if(void 0!==e)return e}}finally{n.pop();}}return i(t)??[]}(e));throw new M$1(I$1.planning,`Circular dependency found: ${n}`,{cause:t})}throw t}function et(e$1,t){return e(t)?(e$1.cache={isRight:true,value:t},t.then(t=>tt(e$1,t))):tt(e$1,t)}function tt(e,t){return e.cache={isRight:true,value:t},t}function nt(e$1,t,n){const i=e$1.getActivations(t);return void 0===i?n:e(n)?it(e$1,n,i[Symbol.iterator]()):function(e$1,t,n){let i=t,o=n.next();for(;true!==o.done;){const t=o.value(e$1.context,i);if(e(t))return it(e$1,t,n);i=t,o=n.next();}return i}(e$1,n,i[Symbol.iterator]())}async function it(e,t,n){let i=await t,o=n.next();for(;true!==o.done;)i=await o.value(e.context,i),o=n.next();return i}function ot(e$1,t,n){let i=n;if(void 0!==t.onActivation){const n=t.onActivation;i=e(i)?i.then(t=>n(e$1.context,t)):n(e$1.context,i);}return nt(e$1,t.serviceIdentifier,i)}function rt(e){return (t,n)=>{if(n.cache.isRight)return n.cache.value;return et(n,ot(t,n,e(t,n)))}}const st=rt(function(e,t){return t.value});function at(e){return e}function ct(e,t){return (n,i)=>{const o=e(i);switch(o.scope){case d.Singleton:if(o.cache.isRight)return o.cache.value;return et(o,ot(n,o,t(n,i)));case d.Request:{if(n.requestScopeCache.has(o.id))return n.requestScopeCache.get(o.id);const e=ot(n,o,t(n,i));return n.requestScopeCache.set(o.id,e),e}case d.Transient:return ot(n,o,t(n,i))}}}const dt=(e=>ct(at,e))(function(e,t){return t.value(e.context)});const ut=rt(function(e,t){return t.factory(e.context)});function lt(e$1,t,n){const i=function(e$1,t,n){if(!(n in e$1))throw new M$1(I$1.resolution,`Expecting a "${n.toString()}" property when resolving "${t.implementationType.name}" class @postConstruct decorated method, none found.`);if("function"!=typeof e$1[n])throw new M$1(I$1.resolution,`Expecting a "${n.toString()}" method when resolving "${t.implementationType.name}" class @postConstruct decorated method, a non function property was found instead.`);{let i;try{i=e$1[n]();}catch(e){throw new M$1(I$1.resolution,`Unexpected error found when calling "${n.toString()}" @postConstruct decorated method on class "${t.implementationType.name}"`,{cause:e})}if(e(i))return async function(e,t,n){try{await n;}catch(n){throw new M$1(I$1.resolution,`Unexpected error found when calling "${t.toString()}" @postConstruct decorated method on class "${e.implementationType.name}"`,{cause:n})}}(t,n,i)}}(e$1,t,n);return e(i)?i.then(()=>e$1):e$1}function pt(e$1,t,n){if(0===n.size)return e$1;let i=e$1;for(const e$1 of n)i=e(i)?i.then(n=>lt(n,t,e$1)):lt(i,t,e$1);return i}function ft(e$1){return (t,n,i)=>{const o=new i.binding.implementationType(...t),r=e$1(n,o,i);return e(r)?r.then(()=>pt(o,i.binding,i.classMetadata.lifecycle.postConstructMethodNames)):pt(o,i.binding,i.classMetadata.lifecycle.postConstructMethodNames)}}const vt=rt(function(e,t){return t.provider(e.context)});function ht(e){return e.binding}function gt(e){return e.binding}const mt=function(e$1){return (t,n,i)=>{const o=[];for(const[r,a]of i.propertyParams){const c=i.classMetadata.properties.get(r);if(void 0===c)throw new M$1(I$1.resolution,`Expecting metadata at property "${r.toString()}", none found`);c.kind!==S$1.unmanaged&&void 0!==a.bindings&&(n[r]=e$1(t,a),e(n[r])&&o.push((async()=>{n[r]=await n[r];})()));}if(o.length>0)return Promise.all(o).then(()=>{})}}(Nt),yt=function(e){return function t(n,i){const o=[];for(const r of i.redirections)we(r)?o.push(...t(n,r)):o.push(e(n,r));return o}}(St),Mt=function(e$1,t,n){return (i,o)=>{const r=e$1(i,o);return e(r)?t(r,i,o):n(r,i,o)}}(function(e$1){return (t,n)=>{const i=[];for(const o of n.constructorParams) void 0===o?i.push(void 0):i.push(e$1(t,o));return i.some(e)?Promise.all(i):i}}(Nt),function(e){return async(t,n,i)=>{const o=await t;return e(o,n,i)}}(ft(mt)),ft(mt)),It=function(e$1){return (t,n)=>{const i=e$1(t,n);return e(i)?i.then(e=>n.binding.factory(...e)):n.binding.factory(...i)}}(function(e$1){return (t,n)=>{const i=[];for(const o of n.params)i.push(e$1(t,o));return i.some(e)?Promise.all(i):i}}(Nt)),bt=(e=>ct(ht,e))(Mt),wt=(e=>ct(gt,e))(It);function Ct(e){try{return Nt(e,e.planResult.tree.root)}catch(t){Ze(e,t);}}function St(e,t){switch(t.binding.type){case u.ConstantValue:return st(e,t.binding);case u.DynamicValue:return dt(e,t.binding);case u.Factory:return ut(e,t.binding);case u.Instance:return bt(e,t);case u.Provider:return vt(e,t.binding);case u.ResolvedValue:return wt(e,t)}}function Nt(e$1,t){if(void 0!==t.bindings)return Array.isArray(t.bindings)?function(e$1,t){const n=[];for(const i of t)we(i)?n.push(...yt(e$1,i)):n.push(St(e$1,i));if(n.some(e))return Promise.all(n);return n}(e$1,t.bindings):function(e,t){if(we(t)){const n=yt(e,t);if(1===n.length)return n[0];throw new M$1(I$1.resolution,"Unexpected multiple resolved values on single injection")}return St(e,t)}(e$1,t.bindings)}function Pt(e){return void 0!==e.scope}function At(e,t){if("function"==typeof e[t]){return e[t]()}}function Rt(e,t){const n=e.lifecycle.preDestroyMethodNames;if(0===n.size)return;let i;for(const e of n)i=void 0===i?At(t,e):i.then(()=>At(t,e));return i}function xt(e$1,t,n){const i=e$1.getDeactivations(t);if(void 0!==i)return e(n)?Tt(n,i[Symbol.iterator]()):function(e$1,t){let n=t.next();for(;true!==n.done;){const i=n.value(e$1);if(e(i))return Tt(e$1,t);n=t.next();}}(n,i[Symbol.iterator]())}async function Tt(e,t){const n=await e;let i=t.next();for(;true!==i.done;)await i.value(n),i=t.next();}function jt(e$1,t){const n=function(e$1,t){if(t.type===u.Instance){const n=e$1.getClassMetadata(t.implementationType),i=t.cache.value;return e(i)?i.then(e=>Rt(n,e)):Rt(n,i)}}(e$1,t);return void 0===n?Bt(e$1,t):n.then(()=>Bt(e$1,t))}function Bt(e$1,t){const n=t.cache;return e(n.value)?n.value.then(n=>Ft(e$1,t,n)):Ft(e$1,t,n.value)}function Ft(e,t,n){let i;if(void 0!==t.onDeactivation){i=(0, t.onDeactivation)(n);}return void 0===i?xt(e,t.serviceIdentifier,n):i.then(()=>xt(e,t.serviceIdentifier,n))}function kt(e,t){if(void 0===t)return;const n=function(e){const t=[];for(const n of e)Pt(n)&&n.scope===d.Singleton&&n.cache.isRight&&t.push(n);return t}(t),i=[];for(const t of n){const n=jt(e,t);void 0!==n&&i.push(n);}return i.length>0?Promise.all(i).then(()=>{}):void 0}function $t(e,t){const n=e.getBindingsFromModule(t);return kt(e,n)}function Dt(e,t){const n=e.getBindings(t);return kt(e,n)}
+const a="@inversifyjs/container/bindingId";function c$1(){const i=c$2(Object,a)??0;return i===Number.MAX_SAFE_INTEGER?a$1(Object,a,Number.MIN_SAFE_INTEGER):i$1(Object,a,()=>i,e=>e+1),i}const d={Request:"Request",Singleton:"Singleton",Transient:"Transient"},u={ConstantValue:"ConstantValue",DynamicValue:"DynamicValue",Factory:"Factory",Instance:"Instance",Provider:"Provider",ResolvedValue:"ResolvedValue",ServiceRedirection:"ServiceRedirection"};function*l$1(...e){for(const t of e)yield*t;}class p{#e;#t;#n;constructor(e){this.#e=new Map,this.#t={};for(const t of Reflect.ownKeys(e))this.#t[t]=new Map;this.#n=e;}add(e,t){this.#i(e).push(t);for(const n of Reflect.ownKeys(t))this.#o(n,t[n]).push(e);}clone(){const e=this.#r(),t=this.#s(),n=Reflect.ownKeys(this.#n),i=this._buildNewInstance(this.#n);this.#a(this.#e,i.#e,e,t);for(const t of n)this.#c(this.#t[t],i.#t[t],e);return i}get(e,t){return this.#t[e].get(t)}getAllKeys(e){return this.#t[e].keys()}removeByRelation(e,t){const n=this.get(e,t);if(void 0===n)return;const i=new Set(n);for(const n of i){const i=this.#e.get(n);if(void 0===i)throw new Error("Expecting model relation, none found");for(const o of i)o[e]===t&&this.#d(n,o);this.#e.delete(n);}}_buildNewInstance(e){return new p(e)}_cloneModel(e){return e}_cloneRelation(e){return e}#r(){const e=new Map;for(const t of this.#e.keys()){const n=this._cloneModel(t);e.set(t,n);}return e}#s(){const e=new Map;for(const t of this.#e.values())for(const n of t){const t=this._cloneRelation(n);e.set(n,t);}return e}#i(e){let t=this.#e.get(e);return void 0===t&&(t=[],this.#e.set(e,t)),t}#o(e,t){let n=this.#t[e].get(t);return void 0===n&&(n=[],this.#t[e].set(t,n)),n}#u(e,t){const n=t.get(e);if(void 0===n)throw new Error("Expecting model to be cloned, none found");return n}#l(e,t){const n=t.get(e);if(void 0===n)throw new Error("Expecting relation to be cloned, none found");return n}#c(e,t,n){for(const[i,o]of e){const e=new Array;for(const t of o)e.push(this.#u(t,n));t.set(i,e);}}#a(e,t,n,i){for(const[o,r]of e){const e=new Array;for(const t of r)e.push(this.#l(t,i));t.set(this.#u(o,n),e);}}#d(e,t){for(const n of Reflect.ownKeys(t))this.#p(e,n,t[n]);}#p(e,t,n){const i=this.#t[t].get(n);if(void 0!==i){const o=i.indexOf(e);-1!==o&&i.splice(o,1),0===i.length&&this.#t[t].delete(n);}}}var f;!function(e){e.moduleId="moduleId",e.serviceId="serviceId";}(f||(f={}));class v{#f;#v;constructor(e,t){this.#f=t??new p({moduleId:{isOptional:true},serviceId:{isOptional:false}}),this.#v=e;}static build(e){return new v(e)}add(e,t){this.#f.add(e,t);}clone(){return new v(this.#v,this.#f.clone())}get(e){const t=[],n=this.#f.get(f.serviceId,e);void 0!==n&&t.push(n);const i=this.#v()?.get(e);if(void 0!==i&&t.push(i),0!==t.length)return l$1(...t)}removeAllByModuleId(e){this.#f.removeByRelation(f.moduleId,e);}removeAllByServiceId(e){this.#f.removeByRelation(f.serviceId,e);}}const h="@inversifyjs/core/classMetadataReflectKey";function g$1(){return {constructorArguments:[],lifecycle:{postConstructMethodNames:new Set,preDestroyMethodNames:new Set},properties:new Map,scope:void 0}}const m="@inversifyjs/core/pendingClassMetadataCountReflectKey";const y=Symbol.for("@inversifyjs/core/InversifyCoreError");let M$1 = class M extends Error{[y];kind;constructor(e,t,n){super(t,n),this[y]=true,this.kind=e;}static is(e){return "object"==typeof e&&null!==e&&true===e[y]}static isErrorOfKind(e,t){return M.is(e)&&e.kind===t}};var I$1,b,w,C$1,S$1;function N$1(t){const n=c$2(t,h)??g$1();if(!function(t){const n=c$2(t,m);return void 0!==n&&0!==n}(t))return function(e,t){const n=[];if(t.length<e.length)throw new M$1(I$1.missingInjectionDecorator,`Found unexpected missing metadata on type "${e.name}". "${e.name}" constructor requires at least ${e.length.toString()} arguments, found ${t.length.toString()} instead.\nAre you using @inject, @multiInject or @unmanaged decorators in every non optional constructor argument?\n\nIf you're using typescript and want to rely on auto injection, set "emitDecoratorMetadata" compiler option to true`);for(let e=0;e<t.length;++e) void 0===t[e]&&n.push(e);if(n.length>0)throw new M$1(I$1.missingInjectionDecorator,`Found unexpected missing metadata on type "${e.name}" at constructor indexes "${n.join('", "')}".\n\nAre you using @inject, @multiInject or @unmanaged decorators at those indexes?\n\nIf you're using typescript and want to rely on auto injection, set "emitDecoratorMetadata" compiler option to true`)}(t,n.constructorArguments),n;!function(e,t){const n=[];for(let i=0;i<t.constructorArguments.length;++i){const o=t.constructorArguments[i];void 0!==o&&o.kind!==b.unknown||n.push(`  - Missing or incomplete metadata for type "${e.name}" at constructor argument with index ${i.toString()}.\nEvery constructor parameter must be decorated either with @inject, @multiInject or @unmanaged decorator.`);}for(const[i,o]of t.properties)o.kind===b.unknown&&n.push(`  - Missing or incomplete metadata for type "${e.name}" at property "${i.toString()}".\nThis property must be decorated either with @inject or @multiInject decorator.`);if(0===n.length)throw new M$1(I$1.unknown,`Unexpected class metadata for type "${e.name}" with uncompletion traces.\nThis might be caused by one of the following reasons:\n\n1. A third party library is targeting inversify reflection metadata.\n2. A bug is causing the issue. Consider submiting an issue to fix it.`);throw new M$1(I$1.missingInjectionDecorator,`Invalid class metadata at type ${e.name}:\n\n${n.join("\n\n")}`)}(t,n);}function P$1(e,t){const n=N$1(t).scope??e.scope;return {cache:{isRight:false,value:void 0},id:c$1(),implementationType:t,isSatisfiedBy:()=>true,moduleId:void 0,onActivation:void 0,onDeactivation:void 0,scope:n,serviceIdentifier:t,type:u.Instance}}function A$2(e){return e.isRight?{isRight:true,value:e.value}:e}function R(e){switch(e.type){case u.ConstantValue:case u.DynamicValue:return function(e){return {cache:A$2(e.cache),id:e.id,isSatisfiedBy:e.isSatisfiedBy,moduleId:e.moduleId,onActivation:e.onActivation,onDeactivation:e.onDeactivation,scope:e.scope,serviceIdentifier:e.serviceIdentifier,type:e.type,value:e.value}}(e);case u.Factory:return function(e){return {cache:A$2(e.cache),factory:e.factory,id:e.id,isSatisfiedBy:e.isSatisfiedBy,moduleId:e.moduleId,onActivation:e.onActivation,onDeactivation:e.onDeactivation,scope:e.scope,serviceIdentifier:e.serviceIdentifier,type:e.type}}(e);case u.Instance:return function(e){return {cache:A$2(e.cache),id:e.id,implementationType:e.implementationType,isSatisfiedBy:e.isSatisfiedBy,moduleId:e.moduleId,onActivation:e.onActivation,onDeactivation:e.onDeactivation,scope:e.scope,serviceIdentifier:e.serviceIdentifier,type:e.type}}(e);case u.Provider:return function(e){return {cache:A$2(e.cache),id:e.id,isSatisfiedBy:e.isSatisfiedBy,moduleId:e.moduleId,onActivation:e.onActivation,onDeactivation:e.onDeactivation,provider:e.provider,scope:e.scope,serviceIdentifier:e.serviceIdentifier,type:e.type}}(e);case u.ResolvedValue:return function(e){return {cache:A$2(e.cache),factory:e.factory,id:e.id,isSatisfiedBy:e.isSatisfiedBy,metadata:e.metadata,moduleId:e.moduleId,onActivation:e.onActivation,onDeactivation:e.onDeactivation,scope:e.scope,serviceIdentifier:e.serviceIdentifier,type:e.type}}(e);case u.ServiceRedirection:return function(e){return {id:e.id,isSatisfiedBy:e.isSatisfiedBy,moduleId:e.moduleId,serviceIdentifier:e.serviceIdentifier,targetServiceIdentifier:e.targetServiceIdentifier,type:e.type}}(e)}}!function(e){e[e.injectionDecoratorConflict=0]="injectionDecoratorConflict",e[e.missingInjectionDecorator=1]="missingInjectionDecorator",e[e.planning=2]="planning",e[e.resolution=3]="resolution",e[e.unknown=4]="unknown";}(I$1||(I$1={})),function(e){e[e.unknown=32]="unknown";}(b||(b={})),function(e){e.id="id",e.moduleId="moduleId",e.serviceId="serviceId";}(w||(w={}));let x$3 = class x extends p{_buildNewInstance(e){return new x(e)}_cloneModel(e){return R(e)}};let T$2 = class T{#h;#g;#v;constructor(e,t,n){this.#g=n??new x$3({id:{isOptional:false},moduleId:{isOptional:true},serviceId:{isOptional:false}}),this.#v=e,this.#h=t;}static build(e,t){return new T(e,t)}clone(){return new T(this.#v,this.#h,this.#g.clone())}get(e){const t=this.getNonParentBindings(e)??this.#v()?.get(e);if(void 0!==t)return t;const n=this.#m(e);return void 0===n?n:[n]}*getChained(e){const t=this.getNonParentBindings(e);void 0!==t&&(yield*t);const n=this.#v();if(void 0===n){if(void 0===t){const t=this.#m(e);void 0!==t&&(yield t);}}else yield*n.getChained(e);}getBoundServices(){const e=new Set(this.#g.getAllKeys(w.serviceId)),t=this.#v();if(void 0!==t)for(const n of t.getBoundServices())e.add(n);return e}getById(e){return this.#g.get(w.id,e)??this.#v()?.getById(e)}getByModuleId(e){return this.#g.get(w.moduleId,e)??this.#v()?.getByModuleId(e)}getNonParentBindings(e){return this.#g.get(w.serviceId,e)}getNonParentBoundServices(){return this.#g.getAllKeys(w.serviceId)}removeById(e){this.#g.removeByRelation(w.id,e);}removeAllByModuleId(e){this.#g.removeByRelation(w.moduleId,e);}removeAllByServiceId(e){this.#g.removeByRelation(w.serviceId,e);}set(e){const t={[w.id]:e.id,[w.serviceId]:e.serviceIdentifier};void 0!==e.moduleId&&(t[w.moduleId]=e.moduleId),this.#g.add(e,t);}#m(e){if(void 0===this.#h||"function"!=typeof e)return;const t=P$1(this.#h,e);return this.set(t),t}};!function(e){e.moduleId="moduleId",e.serviceId="serviceId";}(C$1||(C$1={}));let j$2 = class j{#y;#v;constructor(e,t){this.#y=t??new p({moduleId:{isOptional:true},serviceId:{isOptional:false}}),this.#v=e;}static build(e){return new j(e)}add(e,t){this.#y.add(e,t);}clone(){return new j(this.#v,this.#y.clone())}get(e){const t=[],n=this.#y.get(C$1.serviceId,e);void 0!==n&&t.push(n);const i=this.#v()?.get(e);if(void 0!==i&&t.push(i),0!==t.length)return l$1(...t)}removeAllByModuleId(e){this.#y.removeByRelation(C$1.moduleId,e);}removeAllByServiceId(e){this.#y.removeByRelation(C$1.serviceId,e);}};!function(e){e[e.multipleInjection=0]="multipleInjection",e[e.singleInjection=1]="singleInjection",e[e.unmanaged=2]="unmanaged";}(S$1||(S$1={}));var E$1;!function(e){e[e.method=0]="method",e[e.parameter=1]="parameter",e[e.property=2]="property";}(E$1||(E$1={}));const K$1="@inversifyjs/core/classIsInjectableFlagReflectKey";const q$1=[Array,BigInt,Boolean,Function,Number,Object,String];function G$1(t){const i=c$2(t,"design:paramtypes");void 0!==i&&i$1(t,h,g$1,function(e){return t=>(e.forEach((e,n)=>{var i;void 0!==t.constructorArguments[n]||(i=e,q$1.includes(i))||(t.constructorArguments[n]=function(e){return {isFromTypescriptParamType:true,kind:S$1.singleInjection,name:void 0,optional:false,tags:new Map,value:e}}(e));}),t)}(i));}function W$2(i){return o=>{!function(n){if(void 0!==c$2(n,K$1))throw new M$1(I$1.injectionDecoratorConflict,`Cannot apply @injectable decorator multiple times at class "${n.name}"`);a$1(n,K$1,true);}(o),G$1(o);}}var fe;function ve(e){if(!(e instanceof Error))return  false;return e instanceof RangeError&&/stack space|call stack|too much recursion/i.test(e.message)||"InternalError"===e.name&&/too much recursion/.test(e.message)}function he(e,t){if(ve(t)){const n=function(e){const t=[...e];if(0===t.length)return "(No dependency trace)";return t.map(t$1).join(" -> ")}(function(e){const t=new Set;for(const n of e.servicesBranch){if(t.has(n))return [...t,n];t.add(n);}return [...t]}(e));throw new M$1(I$1.planning,`Circular dependency found: ${n}`,{cause:t})}throw t}!function(e){e[e.multipleInjection=0]="multipleInjection",e[e.singleInjection=1]="singleInjection";}(fe||(fe={}));const ge=Symbol.for("@inversifyjs/core/LazyPlanServiceNode");class me{[ge];_serviceIdentifier;_serviceNode;constructor(e,t){this[ge]=true,this._serviceNode=e,this._serviceIdentifier=t;}get bindings(){return this._getNode().bindings}get isContextFree(){return this._getNode().isContextFree}get serviceIdentifier(){return this._serviceIdentifier}set bindings(e){this._getNode().bindings=e;}set isContextFree(e){this._getNode().isContextFree=e;}static is(e){return "object"==typeof e&&null!==e&&true===e[ge]}invalidate(){this._serviceNode=void 0;}isExpanded(){return void 0!==this._serviceNode}_getNode(){return void 0===this._serviceNode&&(this._serviceNode=this._buildPlanServiceNode()),this._serviceNode}}class ye{#M;constructor(e){this.#M=e;}get name(){return this.#M.elem.name}get serviceIdentifier(){return this.#M.elem.serviceIdentifier}get tags(){return this.#M.elem.tags}getAncestor(){if(this.#M.elem.getAncestorsCalled=true,void 0!==this.#M.previous)return new ye(this.#M.previous)}}function Me(e,t,n){const i=n?.customServiceIdentifier??t.serviceIdentifier,o=(true===n?.chained?[...e.operations.getBindingsChained(i)]:[...e.operations.getBindings(i)??[]]).filter(e=>e.isSatisfiedBy(t));if(0===o.length&&void 0!==e.autobindOptions&&"function"==typeof i){const n=P$1(e.autobindOptions,i);e.operations.setBinding(n),n.isSatisfiedBy(t)&&o.push(n);}return o}class Ie{last;constructor(e){this.last=e;}concat(e){return new Ie({elem:e,previous:this.last})}[Symbol.iterator](){let e=this.last;return {next:()=>{if(void 0===e)return {done:true,value:void 0};const t=e.elem;return e=e.previous,{done:false,value:t}}}}}function be(e){const t=new Map;return void 0!==e.rootConstraints.tag&&t.set(e.rootConstraints.tag.key,e.rootConstraints.tag.value),new Ie({elem:{getAncestorsCalled:false,name:e.rootConstraints.name,serviceIdentifier:e.rootConstraints.serviceIdentifier,tags:t},previous:void 0})}function we(e){return void 0!==e.redirections}function Ce(e,t,n,i){const r=n.elem.serviceIdentifier,s=n.previous?.elem.serviceIdentifier;Array.isArray(e)?function(e,t,n,i,r,s){if(0!==e.length){const t=s[s.length-1]??n,a=`Ambiguous bindings found for service: "${t$1(t)}".${Ae(s)}\n\nRegistered bindings:\n\n${e.map(e=>function(e){switch(e.type){case u.Instance:return `[ type: "${e.type}", serviceIdentifier: "${t$1(e.serviceIdentifier)}", scope: "${e.scope}", implementationType: "${e.implementationType.name}" ]`;case u.ServiceRedirection:return `[ type: "${e.type}", serviceIdentifier: "${t$1(e.serviceIdentifier)}", redirection: "${t$1(e.targetServiceIdentifier)}" ]`;default:return `[ type: "${e.type}", serviceIdentifier: "${t$1(e.serviceIdentifier)}", scope: "${e.scope}" ]`}}(e.binding)).join("\n")}\n\nTrying to resolve bindings for "${Ne(n,i)}".${Pe(r)}`;throw new M$1(I$1.planning,a)}t||Se(n,i,r,s);}(e,t,r,s,n.elem,i):function(e,t,n,i,o,r){ void 0!==e||t||Se(n,i,o,r);}(e,t,r,s,n.elem,i);}function Se(e,t,n,i){const r=i[i.length-1]??e,s=`No bindings found for service: "${t$1(r)}".\n\nTrying to resolve bindings for "${Ne(e,t)}".${Ae(i)}${Pe(n)}`;throw new M$1(I$1.planning,s)}function Ne(e,t){return void 0===t?`${t$1(e)} (Root service)`:t$1(t)}function Pe(e){const t=0===e.tags.size?"":`\n- tags:\n  - ${[...e.tags.keys()].map(e=>e.toString()).join("\n  - ")}`;return `\n\nBinding constraints:\n- service identifier: ${t$1(e.serviceIdentifier)}\n- name: ${e.name?.toString()??"-"}${t}`}function Ae(e){return 0===e.length?"":`\n\n- service redirections:\n  - ${e.map(e=>t$1(e)).join("\n  - ")}`}function Re(e,t,n,i){if(1===e.redirections.length){const[o]=e.redirections;return void(we(o)&&Re(o,t,n,[...i,o.binding.targetServiceIdentifier]))}Ce(e.redirections,t,n,i);}function xe(e,t,n){if(Array.isArray(e.bindings)&&1===e.bindings.length){const[i]=e.bindings;return void(we(i)&&Re(i,t,n,[i.binding.targetServiceIdentifier]))}Ce(e.bindings,t,n,[]);}function Te(e){return r.is(e)?e.unwrap():e}function je(e){return (t,n,i)=>{const o=Te(i.value),r=n.concat({getAncestorsCalled:false,name:i.name,serviceIdentifier:o,tags:i.tags}),s=new ye(r.last),a=i.kind===S$1.multipleInjection&&i.chained,c=Me(t,s,{chained:a}),d=[],u={bindings:d,isContextFree:true,serviceIdentifier:o};if(d.push(...e(t,r,c,u,a)),u.isContextFree=!r.last.elem.getAncestorsCalled,i.kind===S$1.singleInjection){xe(u,i.optional,r.last);const[e]=d;u.bindings=e;}return u}}function Be(e){return (t,n,i)=>{const o=Te(i.value),r=n.concat({getAncestorsCalled:false,name:i.name,serviceIdentifier:o,tags:i.tags}),s=new ye(r.last),a=i.kind===fe.multipleInjection&&i.chained,c=Me(t,s,{chained:a}),d=[],u={bindings:d,isContextFree:true,serviceIdentifier:o};if(d.push(...e(t,r,c,u,a)),u.isContextFree=!r.last.elem.getAncestorsCalled,i.kind===fe.singleInjection){xe(u,i.optional,r.last);const[e]=d;u.bindings=e;}return u}}function Fe(e){const t=function(e){return (t,n,i)=>{const o={binding:n,classMetadata:t.operations.getClassMetadata(n.implementationType),constructorParams:[],propertyParams:new Map},r={autobindOptions:t.autobindOptions,node:o,operations:t.operations,servicesBranch:t.servicesBranch};return e(r,i)}}(e),n=function(e){return (t,n,i)=>{const o={binding:n,params:[]},r={autobindOptions:t.autobindOptions,node:o,operations:t.operations,servicesBranch:t.servicesBranch};return e(r,i)}}(e),i=(e,i,r,s,a)=>{const c=we(s)?s.binding.targetServiceIdentifier:s.serviceIdentifier;e.servicesBranch.push(c);const d=[];for(const s of r)switch(s.type){case u.Instance:d.push(t(e,s,i));break;case u.ResolvedValue:d.push(n(e,s,i));break;case u.ServiceRedirection:{const t=o(e,i,s,a);d.push(t);break}default:d.push({binding:s});}return e.servicesBranch.pop(),d},o=function(e){return (t,n,i,o)=>{const r={binding:i,redirections:[]},s=Me(t,new ye(n.last),{chained:o,customServiceIdentifier:i.targetServiceIdentifier});return r.redirections.push(...e(t,n,s,r,o)),r}}(i);return i}function ke(e,t,n,i){if(void 0!==e&&(me.is(n)&&!n.isExpanded()||n.isContextFree)){const i={tree:{root:n}};t.setPlan(e,i);}else t.setNonCachedServiceNode(n,i);}class $e extends me{#I;#b;#w;#C;constructor(e,t,n,i,o){super(o,Te(i.value)),this.#b=t,this.#I=e,this.#w=n,this.#C=i;}_buildPlanServiceNode(){return this.#b(this.#I,this.#w,this.#C)}}class De extends me{#I;#S;#w;#N;constructor(e,t,n,i,o){super(o,Te(i.value)),this.#I=e,this.#S=t,this.#w=n,this.#N=i;}_buildPlanServiceNode(){return this.#S(this.#I,this.#w,this.#N)}}function Ve(e,t,n,i){const o=function(e,t){const n=function(e,t){return (n,i,o)=>{if(o.kind===S$1.unmanaged)return;const s=function(e){let t;if(0===e.tags.size)t=void 0;else {if(1!==e.tags.size)return;{const[n,i]=e.tags.entries().next().value;t={key:n,value:i};}}const n=r.is(e.value)?e.value.unwrap():e.value;return e.kind===S$1.multipleInjection?{chained:e.chained,isMultiple:true,name:e.name,optional:e.optional,serviceIdentifier:n,tag:t}:{isMultiple:false,name:e.name,optional:e.optional,serviceIdentifier:n,tag:t}}(o);if(void 0!==s){const e=n.operations.getPlan(s);if(void 0!==e&&e.tree.root.isContextFree)return e.tree.root}const a=t(n,i,o),c=new $e(n,e,i,o,a);return ke(s,n.operations,c,{bindingConstraintsList:i,chainedBindings:o.kind===S$1.multipleInjection&&o.chained,optionalBindings:o.optional}),c}}(e,t);return (e,t,i)=>{const o=t.classMetadata;for(const[r,s]of o.constructorArguments.entries())t.constructorParams[r]=n(e,i,s);for(const[r,s]of o.properties){const o=n(e,i,s);void 0!==o&&t.propertyParams.set(r,o);}return e.node}}(e,n),s=function(e,t){const n=function(e,t){return (n,i,o)=>{const s=function(e){let t;if(0===e.tags.size)t=void 0;else {if(1!==e.tags.size)return;{const[n,i]=e.tags.entries().next().value;t={key:n,value:i};}}const n=r.is(e.value)?e.value.unwrap():e.value;return e.kind===fe.multipleInjection?{chained:e.chained,isMultiple:true,name:e.name,optional:e.optional,serviceIdentifier:n,tag:t}:{isMultiple:false,name:e.name,optional:e.optional,serviceIdentifier:n,tag:t}}(o);if(void 0!==s){const e=n.operations.getPlan(s);if(void 0!==e&&e.tree.root.isContextFree)return e.tree.root}const a=t(n,i,o),c=new De(n,e,i,o,a);return ke(s,n.operations,c,{bindingConstraintsList:i,chainedBindings:o.kind===fe.multipleInjection&&o.chained,optionalBindings:o.optional}),c}}(e,t);return (e,t,i)=>{const o=t.binding.metadata;for(const[r,s]of o.arguments.entries())t.params[r]=n(e,i,s);return e.node}}(t,i);return (e,t)=>e.node.binding.type===u.Instance?o(e,e.node,t):s(e,e.node,t)}class Oe extends me{#I;constructor(e,t){super(t,t.serviceIdentifier),this.#I=e;}_buildPlanServiceNode(){return Ue(this.#I)}}const Ee=je(Le),_e=Be(Le),ze=Fe(Ve(Ee,_e,Ee,_e));function Le(e,t,n,i,o){return ze(e,t,n,i,o)}const Ue=function(e){return t=>{const n=be(t),i=new ye(n.last),o=t.rootConstraints.isMultiple&&t.rootConstraints.chained,r=Me(t,i,{chained:o}),s=[],a={bindings:s,isContextFree:true,serviceIdentifier:t.rootConstraints.serviceIdentifier};if(s.push(...e(t,n,r,a,o)),a.isContextFree=!n.last.elem.getAncestorsCalled,!t.rootConstraints.isMultiple){xe(a,t.rootConstraints.isOptional??false,n.last);const[e]=s;a.bindings=e;}return a}}(ze);function Ke(e){try{const t=function(e){return e.rootConstraints.isMultiple?{chained:e.rootConstraints.chained,isMultiple:!0,name:e.rootConstraints.name,optional:e.rootConstraints.isOptional??!1,serviceIdentifier:e.rootConstraints.serviceIdentifier,tag:e.rootConstraints.tag}:{isMultiple:!1,name:e.rootConstraints.name,optional:e.rootConstraints.isOptional??!1,serviceIdentifier:e.rootConstraints.serviceIdentifier,tag:e.rootConstraints.tag}}(e),n=e.operations.getPlan(t);if(void 0!==n)return n;const i=Ue(e),o={tree:{root:new Oe(e,i)}};return e.operations.setPlan(t,o),o}catch(t){he(e,t);}}var qe;!function(e){e.bindingAdded="bindingAdded",e.bindingRemoved="bindingRemoved";}(qe||(qe={}));class Ge{#P;#A;#R;constructor(){this.#P=[],this.#A=8,this.#R=1024;}*[Symbol.iterator](){let e=0;for(const t of this.#P){const n=t.deref();void 0===n?++e:yield n;}this.#P.length>=this.#A&&this.#x(e)&&this.#T(e);}push(e){const t=new WeakRef(e);if(this.#P.push(t),this.#P.length>=this.#A&&this.#P.length%this.#R===0){let e=0;for(const t of this.#P) void 0===t.deref()&&++e;this.#x(e)&&this.#T(e);}}#T(e){const t=new Array(this.#P.length-e);let n=0;for(const e of this.#P)e.deref()&&(t[n++]=e);this.#P=t;}#x(e){return e>=.5*this.#P.length}}const We=Fe(Ve(Ee,_e,function(e,t,n){return Xe(e,t,n)},function(e,t,n){return He(e,t,n)})),Xe=function(e){const t=je(e);return (e,n,i)=>{try{return t(e,n,i)}catch(e){if(M$1.isErrorOfKind(e,I$1.planning))return;throw e}}}(We),He=function(e){const t=Be(e);return (e,n,i)=>{try{return t(e,n,i)}catch(e){if(M$1.isErrorOfKind(e,I$1.planning))return;throw e}}}(We);function Je(e,t,n,i,o){if(me.is(t)&&!t.isExpanded())return {isContextFreeBinding:true,shouldInvalidateServiceNode:false};const r=new ye(i.last);return !n.isSatisfiedBy(r)||i.last.elem.getAncestorsCalled?{isContextFreeBinding:!i.last.elem.getAncestorsCalled,shouldInvalidateServiceNode:false}:function(e,t,n,i,o){let r;try{[r]=We(e,i,[n],t,o);}catch(e){if(ve(e))return {isContextFreeBinding:false,shouldInvalidateServiceNode:true};throw e}return function(e,t){if(Array.isArray(e.bindings))e.bindings.push(t);else {if(void 0!==e.bindings){if(!me.is(e))throw new M$1(I$1.planning,"Unexpected non-lazy plan service node. This is likely a bug in the planning logic. Please, report this issue");return {isContextFreeBinding:true,shouldInvalidateServiceNode:true}}e.bindings=t;}return {isContextFreeBinding:true,shouldInvalidateServiceNode:false}}(t,r)}(e,t,n,i,o)}function Qe(e,t,n,i){if(me.is(e)&&!e.isExpanded())return {bindingNodeRemoved:void 0,isContextFreeBinding:true};const o=new ye(n.last);if(!t.isSatisfiedBy(o)||n.last.elem.getAncestorsCalled)return {bindingNodeRemoved:void 0,isContextFreeBinding:!n.last.elem.getAncestorsCalled};let r;if(Array.isArray(e.bindings))e.bindings=e.bindings.filter(e=>e.binding!==t||(r=e,false));else if(e.bindings?.binding===t)if(r=e.bindings,i)e.bindings=void 0;else {if(!me.is(e))throw new M$1(I$1.planning,"Unexpected non-lazy plan service node. This is likely a bug in the planning logic. Please, report this issue");e.invalidate();}return {bindingNodeRemoved:r,isContextFreeBinding:true}}class Ye{#j;#B;#F;#k;#$;#D;constructor(){this.#j=new Map,this.#B=this.#V(),this.#F=this.#V(),this.#k=this.#V(),this.#$=this.#V(),this.#D=new Ge;}clearCache(){for(const e of this.#O())e.clear();for(const e of this.#D)e.clearCache();}get(e){return void 0===e.name?void 0===e.tag?this.#E(this.#B,e).get(e.serviceIdentifier):this.#E(this.#$,e).get(e.serviceIdentifier)?.get(e.tag.key)?.get(e.tag.value):void 0===e.tag?this.#E(this.#F,e).get(e.serviceIdentifier)?.get(e.name):this.#E(this.#k,e).get(e.serviceIdentifier)?.get(e.name)?.get(e.tag.key)?.get(e.tag.value)}invalidateServiceBinding(e){this.#_(e),this.#z(e),this.#L(e),this.#U(e),this.#K(e);for(const t of this.#D)t.invalidateServiceBinding(e);}set(e,t){ void 0===e.name?void 0===e.tag?this.#E(this.#B,e).set(e.serviceIdentifier,t):this.#q(this.#q(this.#E(this.#$,e),e.serviceIdentifier),e.tag.key).set(e.tag.value,t):void 0===e.tag?this.#q(this.#E(this.#F,e),e.serviceIdentifier).set(e.name,t):this.#q(this.#q(this.#q(this.#E(this.#k,e),e.serviceIdentifier),e.name),e.tag.key).set(e.tag.value,t);}setNonCachedServiceNode(e,t){let n=this.#j.get(e.serviceIdentifier);void 0===n&&(n=new Map,this.#j.set(e.serviceIdentifier,n)),n.set(e,t);}subscribe(e){this.#D.push(e);}#V(){const e=new Array(8);for(let t=0;t<e.length;++t)e[t]=new Map;return e}#G(e,t,n,i){const o=!!(2&t);let r;if(o){r={chained:!!(0&t),isMultiple:o,serviceIdentifier:e.binding.serviceIdentifier};}else r={isMultiple:o,serviceIdentifier:e.binding.serviceIdentifier};return !!(1&t)&&(r.isOptional=true),void 0!==n&&(r.name=n),void 0!==i&&(r.tag=i),{autobindOptions:void 0,operations:e.operations,rootConstraints:r,servicesBranch:[]}}#q(e,t){let n=e.get(t);return void 0===n&&(n=new Map,e.set(t,n)),n}#E(e,t){return e[this.#W(t)]}#O(){return [this.#j,...this.#B,...this.#F,...this.#k,...this.#$]}#W(e){return e.isMultiple?(e.chained?4:0)|(e.optional?1:0)|2:e.optional?1:0}#z(e){for(const[t,n]of this.#F.entries()){const i=n.get(e.binding.serviceIdentifier);if(void 0!==i)for(const[n,o]of i.entries())this.#X(e,o,t,n,void 0);}}#L(e){for(const[t,n]of this.#k.entries()){const i=n.get(e.binding.serviceIdentifier);if(void 0!==i)for(const[n,o]of i.entries())for(const[i,r]of o.entries())for(const[o,s]of r.entries())this.#X(e,s,t,n,{key:i,value:o});}}#H(e){switch(e.binding.type){case u.ServiceRedirection:for(const t of e.redirections)this.#H(t);break;case u.Instance:for(const t of e.constructorParams) void 0!==t&&this.#J(t);for(const t of e.propertyParams.values())this.#J(t);break;case u.ResolvedValue:for(const t of e.params)this.#J(t);}}#J(e){const t=this.#j.get(e.serviceIdentifier);void 0!==t&&t.has(e)&&(t.delete(e),this.#Q(e));}#Q(e){if((!me.is(e)||e.isExpanded())&&void 0!==e.bindings)if(Array.isArray(e.bindings))for(const t of e.bindings)this.#H(t);else this.#H(e.bindings);}#K(e){const t=this.#j.get(e.binding.serviceIdentifier);if(void 0!==t)switch(e.kind){case qe.bindingAdded:for(const[n,i]of t){const t=Je({autobindOptions:void 0,operations:e.operations,servicesBranch:[]},n,e.binding,i.bindingConstraintsList,i.chainedBindings);t.isContextFreeBinding?t.shouldInvalidateServiceNode&&me.is(n)&&(this.#Q(n),n.invalidate()):this.clearCache();}break;case qe.bindingRemoved:for(const[n,i]of t){const t=Qe(n,e.binding,i.bindingConstraintsList,i.optionalBindings);t.isContextFreeBinding?void 0!==t.bindingNodeRemoved&&this.#H(t.bindingNodeRemoved):this.clearCache();}}}#_(e){for(const[t,n]of this.#B.entries()){const i=n.get(e.binding.serviceIdentifier);this.#X(e,i,t,void 0,void 0);}}#U(e){for(const[t,n]of this.#$.entries()){const i=n.get(e.binding.serviceIdentifier);if(void 0!==i)for(const[n,o]of i.entries())for(const[i,r]of o.entries())this.#X(e,r,t,void 0,{key:n,value:i});}}#X(e,t,n,i,o){if(void 0!==t&&me.is(t.tree.root)){const c=this.#G(e,n,i,o);switch(e.kind){case qe.bindingAdded:{const n=(r=c,s=t.tree.root,a=e.binding,me.is(s)&&!s.isExpanded()?{isContextFreeBinding:true,shouldInvalidateServiceNode:false}:Je(r,s,a,be(r),r.rootConstraints.isMultiple&&r.rootConstraints.chained));n.isContextFreeBinding?n.shouldInvalidateServiceNode&&(this.#Q(t.tree.root),t.tree.root.invalidate()):this.clearCache();}break;case qe.bindingRemoved:{const n=function(e,t,n){return me.is(t)&&!t.isExpanded()?{bindingNodeRemoved:void 0,isContextFreeBinding:true}:Qe(t,n,be(e),e.rootConstraints.isOptional??false)}(c,t.tree.root,e.binding);n.isContextFreeBinding?void 0!==n.bindingNodeRemoved&&this.#H(n.bindingNodeRemoved):this.clearCache();}}}var r,s,a;}}function Ze(e,t){if(ve(t)){const n=function(e){const t=[...e];if(0===t.length)return "(No dependency trace)";return t.map(t$1).join(" -> ")}(function(e){const t=e.planResult.tree.root,n=[];function i(e){const t=n.indexOf(e);if(-1!==t){return [...n.slice(t),e].map(e=>e.serviceIdentifier)}n.push(e);try{for(const t of function(e){const t=[],n=e.bindings;if(void 0===n)return t;const i=e=>{if(we(e))for(const t of e.redirections)i(t);else switch(e.binding.type){case u.Instance:{const n=e;for(const e of n.constructorParams)void 0!==e&&t.push(e);for(const e of n.propertyParams.values())t.push(e);break}case u.ResolvedValue:{const n=e;for(const e of n.params)t.push(e);break}}};if(Array.isArray(n))for(const e of n)i(e);else i(n);return t}(e)){const e=i(t);if(void 0!==e)return e}}finally{n.pop();}}return i(t)??[]}(e));throw new M$1(I$1.planning,`Circular dependency found: ${n}`,{cause:t})}throw t}function et$1(e$1,t){return e(t)?(e$1.cache={isRight:true,value:t},t.then(t=>tt(e$1,t))):tt(e$1,t)}function tt(e,t){return e.cache={isRight:true,value:t},t}function nt(e$1,t,n){const i=e$1.getActivations(t);return void 0===i?n:e(n)?it(e$1,n,i[Symbol.iterator]()):function(e$1,t,n){let i=t,o=n.next();for(;true!==o.done;){const t=o.value(e$1.context,i);if(e(t))return it(e$1,t,n);i=t,o=n.next();}return i}(e$1,n,i[Symbol.iterator]())}async function it(e,t,n){let i=await t,o=n.next();for(;true!==o.done;)i=await o.value(e.context,i),o=n.next();return i}function ot(e$1,t,n){let i=n;if(void 0!==t.onActivation){const n=t.onActivation;i=e(i)?i.then(t=>n(e$1.context,t)):n(e$1.context,i);}return nt(e$1,t.serviceIdentifier,i)}function rt(e){return (t,n)=>{if(n.cache.isRight)return n.cache.value;return et$1(n,ot(t,n,e(t,n)))}}const st=rt(function(e,t){return t.value});function at(e){return e}function ct(e,t){return (n,i)=>{const o=e(i);switch(o.scope){case d.Singleton:if(o.cache.isRight)return o.cache.value;return et$1(o,ot(n,o,t(n,i)));case d.Request:{if(n.requestScopeCache.has(o.id))return n.requestScopeCache.get(o.id);const e=ot(n,o,t(n,i));return n.requestScopeCache.set(o.id,e),e}case d.Transient:return ot(n,o,t(n,i))}}}const dt=(e=>ct(at,e))(function(e,t){return t.value(e.context)});const ut=rt(function(e,t){return t.factory(e.context)});function lt(e$1,t,n){const i=function(e$1,t,n){if(!(n in e$1))throw new M$1(I$1.resolution,`Expecting a "${n.toString()}" property when resolving "${t.implementationType.name}" class @postConstruct decorated method, none found.`);if("function"!=typeof e$1[n])throw new M$1(I$1.resolution,`Expecting a "${n.toString()}" method when resolving "${t.implementationType.name}" class @postConstruct decorated method, a non function property was found instead.`);{let i;try{i=e$1[n]();}catch(e){throw new M$1(I$1.resolution,`Unexpected error found when calling "${n.toString()}" @postConstruct decorated method on class "${t.implementationType.name}"`,{cause:e})}if(e(i))return async function(e,t,n){try{await n;}catch(n){throw new M$1(I$1.resolution,`Unexpected error found when calling "${t.toString()}" @postConstruct decorated method on class "${e.implementationType.name}"`,{cause:n})}}(t,n,i)}}(e$1,t,n);return e(i)?i.then(()=>e$1):e$1}function pt(e$1,t,n){if(0===n.size)return e$1;let i=e$1;for(const e$1 of n)i=e(i)?i.then(n=>lt(n,t,e$1)):lt(i,t,e$1);return i}function ft(e$1){return (t,n,i)=>{const o=new i.binding.implementationType(...t),r=e$1(n,o,i);return e(r)?r.then(()=>pt(o,i.binding,i.classMetadata.lifecycle.postConstructMethodNames)):pt(o,i.binding,i.classMetadata.lifecycle.postConstructMethodNames)}}const vt=rt(function(e,t){return t.provider(e.context)});function ht(e){return e.binding}function gt(e){return e.binding}const mt=function(e$1){return (t,n,i)=>{const o=[];for(const[r,a]of i.propertyParams){const c=i.classMetadata.properties.get(r);if(void 0===c)throw new M$1(I$1.resolution,`Expecting metadata at property "${r.toString()}", none found`);c.kind!==S$1.unmanaged&&void 0!==a.bindings&&(n[r]=e$1(t,a),e(n[r])&&o.push((async()=>{n[r]=await n[r];})()));}if(o.length>0)return Promise.all(o).then(()=>{})}}(Nt),yt=function(e){return function t(n,i){const o=[];for(const r of i.redirections)we(r)?o.push(...t(n,r)):o.push(e(n,r));return o}}(St),Mt=function(e$1,t,n){return (i,o)=>{const r=e$1(i,o);return e(r)?t(r,i,o):n(r,i,o)}}(function(e$1){return (t,n)=>{const i=[];for(const o of n.constructorParams) void 0===o?i.push(void 0):i.push(e$1(t,o));return i.some(e)?Promise.all(i):i}}(Nt),function(e){return async(t,n,i)=>{const o=await t;return e(o,n,i)}}(ft(mt)),ft(mt)),It=function(e$1){return (t,n)=>{const i=e$1(t,n);return e(i)?i.then(e=>n.binding.factory(...e)):n.binding.factory(...i)}}(function(e$1){return (t,n)=>{const i=[];for(const o of n.params)i.push(e$1(t,o));return i.some(e)?Promise.all(i):i}}(Nt)),bt=(e=>ct(ht,e))(Mt),wt=(e=>ct(gt,e))(It);function Ct(e){try{return Nt(e,e.planResult.tree.root)}catch(t){Ze(e,t);}}function St(e,t){switch(t.binding.type){case u.ConstantValue:return st(e,t.binding);case u.DynamicValue:return dt(e,t.binding);case u.Factory:return ut(e,t.binding);case u.Instance:return bt(e,t);case u.Provider:return vt(e,t.binding);case u.ResolvedValue:return wt(e,t)}}function Nt(e$1,t){if(void 0!==t.bindings)return Array.isArray(t.bindings)?function(e$1,t){const n=[];for(const i of t)we(i)?n.push(...yt(e$1,i)):n.push(St(e$1,i));if(n.some(e))return Promise.all(n);return n}(e$1,t.bindings):function(e,t){if(we(t)){const n=yt(e,t);if(1===n.length)return n[0];throw new M$1(I$1.resolution,"Unexpected multiple resolved values on single injection")}return St(e,t)}(e$1,t.bindings)}function Pt(e){return void 0!==e.scope}function At(e,t){if("function"==typeof e[t]){return e[t]()}}function Rt(e,t){const n=e.lifecycle.preDestroyMethodNames;if(0===n.size)return;let i;for(const e of n)i=void 0===i?At(t,e):i.then(()=>At(t,e));return i}function xt(e$1,t,n){const i=e$1.getDeactivations(t);if(void 0!==i)return e(n)?Tt(n,i[Symbol.iterator]()):function(e$1,t){let n=t.next();for(;true!==n.done;){const i=n.value(e$1);if(e(i))return Tt(e$1,t);n=t.next();}}(n,i[Symbol.iterator]())}async function Tt(e,t){const n=await e;let i=t.next();for(;true!==i.done;)await i.value(n),i=t.next();}function jt(e$1,t){const n=function(e$1,t){if(t.type===u.Instance){const n=e$1.getClassMetadata(t.implementationType),i=t.cache.value;return e(i)?i.then(e=>Rt(n,e)):Rt(n,i)}}(e$1,t);return void 0===n?Bt(e$1,t):n.then(()=>Bt(e$1,t))}function Bt(e$1,t){const n=t.cache;return e(n.value)?n.value.then(n=>Ft(e$1,t,n)):Ft(e$1,t,n.value)}function Ft(e,t,n){let i;if(void 0!==t.onDeactivation){i=(0, t.onDeactivation)(n);}return void 0===i?xt(e,t.serviceIdentifier,n):i.then(()=>xt(e,t.serviceIdentifier,n))}function kt(e,t){if(void 0===t)return;const n=function(e){const t=[];for(const n of e)Pt(n)&&n.scope===d.Singleton&&n.cache.isRight&&t.push(n);return t}(t),i=[];for(const t of n){const n=jt(e,t);void 0!==n&&i.push(n);}return i.length>0?Promise.all(i).then(()=>{}):void 0}function $t(e,t){const n=e.getBindingsFromModule(t);return kt(e,n)}function Dt(e,t){const n=e.getBindings(t);return kt(e,n)}
 
 const t=Symbol.for("@inversifyjs/plugin/isPlugin");
 
-const I=Symbol.for("@inversifyjs/container/bindingIdentifier");function A$1(e){return "object"==typeof e&&null!==e&&true===e[I]}class P{static always=e=>true}const C=Symbol.for("@inversifyjs/container/InversifyContainerError");class B extends Error{[C];kind;constructor(e,n,i){super(n,i),this[C]=true,this.kind=e;}static is(e){return "object"==typeof e&&null!==e&&true===e[C]}static isErrorOfKind(e,n){return B.is(e)&&e.kind===n}}var O;function x$1(e){return {[I]:true,id:e.id}}function k(e){return n=>{for(let i=n.getAncestor();void 0!==i;i=i.getAncestor())if(e(i))return  true;return  false}}function N(e){return n=>n.name===e}function F(e){return n=>n.serviceIdentifier===e}function U(e,n){return i=>i.tags.has(e)&&i.tags.get(e)===n}function D(e){return void 0===e.name&&0===e.tags.size}function j$1(e){const n=k(e);return e=>!n(e)}function T$1(e){return n=>{const i=n.getAncestor();return void 0===i||!e(i)}}function V(e){return n=>{const i=n.getAncestor();return void 0!==i&&e(i)}}!function(e){e[e.invalidOperation=0]="invalidOperation";}(O||(O={}));class E{#i;constructor(e){this.#i=e;}getIdentifier(){return x$1(this.#i)}inRequestScope(){return this.#i.scope=d.Request,new G(this.#i)}inSingletonScope(){return this.#i.scope=d.Singleton,new G(this.#i)}inTransientScope(){return this.#i.scope=d.Transient,new G(this.#i)}}let L$1 = class L{#t;#r;#a;#s;constructor(e,n,i,t){this.#t=e,this.#r=n,this.#a=i,this.#s=t;}to(e){const n=N$1(e),i={cache:{isRight:false,value:void 0},id:c$1(),implementationType:e,isSatisfiedBy:P.always,moduleId:this.#r,onActivation:void 0,onDeactivation:void 0,scope:n.scope??this.#a,serviceIdentifier:this.#s,type:u.Instance};return this.#t(i),new H(i)}toSelf(){if("function"!=typeof this.#s)throw new Error('"toSelf" function can only be applied when a newable function is used as service identifier');return this.to(this.#s)}toConstantValue(e){const n={cache:{isRight:false,value:void 0},id:c$1(),isSatisfiedBy:P.always,moduleId:this.#r,onActivation:void 0,onDeactivation:void 0,scope:d.Singleton,serviceIdentifier:this.#s,type:u.ConstantValue,value:e};return this.#t(n),new G(n)}toDynamicValue(e){const n={cache:{isRight:false,value:void 0},id:c$1(),isSatisfiedBy:P.always,moduleId:this.#r,onActivation:void 0,onDeactivation:void 0,scope:this.#a,serviceIdentifier:this.#s,type:u.DynamicValue,value:e};return this.#t(n),new H(n)}toResolvedValue(e,n){const i={cache:{isRight:false,value:void 0},factory:e,id:c$1(),isSatisfiedBy:P.always,metadata:this.#o(n),moduleId:this.#r,onActivation:void 0,onDeactivation:void 0,scope:this.#a,serviceIdentifier:this.#s,type:u.ResolvedValue};return this.#t(i),new H(i)}toFactory(e){const n={cache:{isRight:false,value:void 0},factory:e,id:c$1(),isSatisfiedBy:P.always,moduleId:this.#r,onActivation:void 0,onDeactivation:void 0,scope:d.Singleton,serviceIdentifier:this.#s,type:u.Factory};return this.#t(n),new G(n)}toProvider(e){const n={cache:{isRight:false,value:void 0},id:c$1(),isSatisfiedBy:P.always,moduleId:this.#r,onActivation:void 0,onDeactivation:void 0,provider:e,scope:d.Singleton,serviceIdentifier:this.#s,type:u.Provider};return this.#t(n),new G(n)}toService(e){const n={id:c$1(),isSatisfiedBy:P.always,moduleId:this.#r,serviceIdentifier:this.#s,targetServiceIdentifier:e,type:u.ServiceRedirection};this.#t(n);}#o(e){return {arguments:(e??[]).map(e=>function(e){return "object"==typeof e&&!r.is(e)}(e)?function(e){return  true===e.isMultiple}(e)?{chained:e.chained??false,kind:fe.multipleInjection,name:e.name,optional:e.optional??false,tags:new Map((e.tags??[]).map(e=>[e.key,e.value])),value:e.serviceIdentifier}:{kind:fe.singleInjection,name:e.name,optional:e.optional??false,tags:new Map((e.tags??[]).map(e=>[e.key,e.value])),value:e.serviceIdentifier}:{kind:fe.singleInjection,name:void 0,optional:false,tags:new Map,value:e})}}};class ${#i;constructor(e){this.#i=e;}getIdentifier(){return x$1(this.#i)}onActivation(e){return this.#i.onActivation=e,new q(this.#i)}onDeactivation(e){if(this.#i.onDeactivation=e,this.#i.scope!==d.Singleton)throw new B(O.invalidOperation,`Binding for service "${t$1(this.#i.serviceIdentifier)}" has a deactivation function, but its scope is not singleton. Deactivation functions can only be used with singleton bindings.`);return new q(this.#i)}}class q{#i;constructor(e){this.#i=e;}getIdentifier(){return x$1(this.#i)}when(e){return this.#i.isSatisfiedBy=e,new $(this.#i)}whenAnyAncestor(e){return this.when(k(e))}whenAnyAncestorIs(e){return this.when(k(F(e)))}whenAnyAncestorNamed(e){return this.when(function(e){return k(N(e))}(e))}whenAnyAncestorTagged(e,n){return this.when(function(e,n){return k(U(e,n))}(e,n))}whenDefault(){return this.when(D)}whenNamed(e){return this.when(N(e))}whenNoParent(e){return this.when(T$1(e))}whenNoParentIs(e){return this.when(T$1(F(e)))}whenNoParentNamed(e){return this.when(function(e){return T$1(N(e))}(e))}whenNoParentTagged(e,n){return this.when(function(e,n){return T$1(U(e,n))}(e,n))}whenParent(e){return this.when(V(e))}whenParentIs(e){return this.when(V(F(e)))}whenParentNamed(e){return this.when(function(e){return V(N(e))}(e))}whenParentTagged(e,n){return this.when(function(e,n){return V(U(e,n))}(e,n))}whenTagged(e,n){return this.when(U(e,n))}whenNoAncestor(e){return this.when(j$1(e))}whenNoAncestorIs(e){return this.when(j$1(F(e)))}whenNoAncestorNamed(e){return this.when(function(e){return j$1(N(e))}(e))}whenNoAncestorTagged(e,n){return this.when(function(e,n){return j$1(U(e,n))}(e,n))}}class G extends q{#c;constructor(e){super(e),this.#c=new $(e);}onActivation(e){return this.#c.onActivation(e)}onDeactivation(e){return this.#c.onDeactivation(e)}}class H extends G{#d;constructor(e){super(e),this.#d=new E(e);}inRequestScope(){return this.#d.inRequestScope()}inSingletonScope(){return this.#d.inSingletonScope()}inTransientScope(){return this.#d.inTransientScope()}}class _{#l;#a;#u;#h;constructor(e,n,i,t){this.#l=e,this.#a=n,this.#u=i,this.#h=t;}bind(e){return new L$1(e=>{this.#v(e);},void 0,this.#a,e)}isBound(e,n){const i=this.#h.bindingService.get(e);return this.#g(e,i,n)}isCurrentBound(e,n){const i=this.#h.bindingService.getNonParentBindings(e);return this.#g(e,i,n)}async rebind(e){return await this.unbind(e),this.bind(e)}rebindSync(e){return this.unbindSync(e),this.bind(e)}async unbind(e){await this.#f(e);}async unbindAll(){const e=[...this.#h.bindingService.getNonParentBoundServices()];await Promise.all(e.map(async e=>Dt(this.#l,e)));for(const n of e)this.#h.activationService.removeAllByServiceId(n),this.#h.bindingService.removeAllByServiceId(n),this.#h.deactivationService.removeAllByServiceId(n);this.#h.planResultCacheService.clearCache();}unbindSync(e){ void 0!==this.#f(e)&&this.#b(e);}#v(e){this.#h.bindingService.set(e),this.#u.invalidateService({binding:e,kind:qe.bindingAdded});}#b(e){let n;if(A$1(e)){const t=this.#h.bindingService.getById(e.id),r=(i=t,function(e){if(void 0===e)return;const n=e.next();return  true!==n.done?n.value:void 0}(i?.[Symbol.iterator]()))?.serviceIdentifier;n=void 0===r?"Unexpected asynchronous deactivation when unbinding binding identifier. Consider using Container.unbind() instead.":`Unexpected asynchronous deactivation when unbinding "${t$1(r)}" binding. Consider using Container.unbind() instead.`;}else n=`Unexpected asynchronous deactivation when unbinding "${t$1(e)}" service. Consider using Container.unbind() instead.`;var i;throw new B(O.invalidOperation,n)}#f(e){return A$1(e)?this.#p(e):this.#S(e)}#p(e){const n=this.#h.bindingService.getById(e.id),i=void 0===n?void 0:[...n],t=kt(this.#l,n);if(void 0!==t)return t.then(()=>{this.#M(i,e);});this.#M(i,e);}#M(e,n){if(this.#h.bindingService.removeById(n.id),void 0!==e)for(const n of e)this.#u.invalidateService({binding:n,kind:qe.bindingRemoved});}#S(e){const n=this.#h.bindingService.get(e),i=void 0===n?void 0:[...n],t=kt(this.#l,n);if(void 0!==t)return t.then(()=>{this.#R(e,i);});this.#R(e,i);}#R(e,n){if(this.#h.activationService.removeAllByServiceId(e),this.#h.bindingService.removeAllByServiceId(e),this.#h.deactivationService.removeAllByServiceId(e),void 0!==n)for(const e of n)this.#u.invalidateService({binding:e,kind:qe.bindingRemoved});}#g(e,n,i){if(void 0===n)return  false;const t={getAncestor:()=>{},name:i?.name,serviceIdentifier:e,tags:new Map};void 0!==i?.tag&&t.tags.set(i.tag.key,i.tag.value);for(const e of n)if(e.isSatisfiedBy(t))return  true;return  false}}class z{#y;#l;#a;#u;#h;constructor(e,n,i,t,r){this.#y=e,this.#l=n,this.#a=i,this.#u=t,this.#h=r;}async load(...e){await Promise.all(this.#n(...e));}loadSync(...e){const n=this.#n(...e);for(const e of n)if(void 0!==e)throw new B(O.invalidOperation,"Unexpected asynchronous module load. Consider using Container.load() instead.")}async unload(...e){await Promise.all(this.#m(...e)),this.#w(e);}unloadSync(...e){const n=this.#m(...e);for(const e of n)if(void 0!==e)throw new B(O.invalidOperation,"Unexpected asynchronous module unload. Consider using Container.unload() instead.");this.#w(e);}#I(e){return {bind:n=>new L$1(e=>{this.#v(e);},e,this.#a,n),isBound:this.#y.isBound.bind(this.#y),onActivation:(n,i)=>{this.#h.activationService.add(i,{moduleId:e,serviceId:n});},onDeactivation:(n,i)=>{this.#h.deactivationService.add(i,{moduleId:e,serviceId:n});},rebind:this.#y.rebind.bind(this.#y),rebindSync:this.#y.rebindSync.bind(this.#y),unbind:this.#y.unbind.bind(this.#y),unbindSync:this.#y.unbindSync.bind(this.#y)}}#w(e){for(const n of e)this.#h.activationService.removeAllByModuleId(n.id),this.#h.bindingService.removeAllByModuleId(n.id),this.#h.deactivationService.removeAllByModuleId(n.id);this.#h.planResultCacheService.clearCache();}#n(...e){return e.map(e=>e.load(this.#I(e.id)))}#v(e){this.#h.bindingService.set(e),this.#u.invalidateService({binding:e,kind:qe.bindingAdded});}#m(...e){return e.map(e=>$t(this.#l,e.id))}}class K{deactivationParams;constructor(e){this.deactivationParams=function(e){return {getBindings:e.bindingService.get.bind(e.bindingService),getBindingsFromModule:e.bindingService.getByModuleId.bind(e.bindingService),getClassMetadata:N$1,getDeactivations:e.deactivationService.get.bind(e.deactivationService)}}(e),e.onReset(()=>{!function(e,n){n.getBindings=e.bindingService.get.bind(e.bindingService),n.getBindingsFromModule=e.bindingService.getByModuleId.bind(e.bindingService),n.getDeactivations=e.deactivationService.get.bind(e.deactivationService);}(e,this.deactivationParams);});}}let X$1 = class X{planParamsOperations;#h;constructor(e){this.#h=e,this.planParamsOperations={getBindings:this.#h.bindingService.get.bind(this.#h.bindingService),getBindingsChained:this.#h.bindingService.getChained.bind(this.#h.bindingService),getClassMetadata:N$1,getPlan:this.#h.planResultCacheService.get.bind(this.#h.planResultCacheService),setBinding:this.#v.bind(this),setNonCachedServiceNode:this.#h.planResultCacheService.setNonCachedServiceNode.bind(this.#h.planResultCacheService),setPlan:this.#h.planResultCacheService.set.bind(this.#h.planResultCacheService)},this.#h.onReset(()=>{this.#A();});}#A(){this.planParamsOperations.getBindings=this.#h.bindingService.get.bind(this.#h.bindingService),this.planParamsOperations.getBindingsChained=this.#h.bindingService.getChained.bind(this.#h.bindingService),this.planParamsOperations.setBinding=this.#v.bind(this);}#v(e){this.#h.bindingService.set(e),this.#h.planResultCacheService.invalidateServiceBinding({binding:e,kind:qe.bindingAdded,operations:this.planParamsOperations});}};class J{#P;#h;constructor(e,n){this.#P=e,this.#h=n;}invalidateService(e){this.#h.planResultCacheService.invalidateServiceBinding({...e,operations:this.#P.planParamsOperations});}}class Q{#C;#B;#O;#h;constructor(e,n,i){this.#h=n,this.#O=i,this.#C=this.#x(e),this.#B=this.#k();}register(e,n){const i=new n(e,this.#B);if(true!==i[t])throw new B(O.invalidOperation,"Invalid plugin. The plugin must extend the Plugin class");i.load(this.#C);}#x(e){return {define:(n,i)=>{if(Object.prototype.hasOwnProperty.call(e,n))throw new B(O.invalidOperation,`Container already has a method named "${String(n)}"`);e[n]=i;},onPlan:this.#O.onPlan.bind(this.#O)}}#k(){const e=this.#h;return {get activationService(){return e.activationService},get bindingService(){return e.bindingService},get deactivationService(){return e.deactivationService},get planResultCacheService(){return e.planResultCacheService}}}}let W$1 = class W{activationService;bindingService;deactivationService;planResultCacheService;#N;constructor(e,n,i,t){this.activationService=e,this.bindingService=n,this.deactivationService=i,this.planResultCacheService=t,this.#N=[];}reset(e,n,i){this.activationService=e,this.bindingService=n,this.deactivationService=i,this.planResultCacheService.clearCache();for(const e of this.#N)e();}onReset(e){this.#N.push(e);}};class Y{#F;#a;#U;#D;#j;#P;#h;constructor(e,n,i,t){this.#P=e,this.#h=n,this.#D=this.#T(),this.#F=i,this.#a=t,this.#U=e=>this.#h.activationService.get(e),this.#j=[],this.#h.onReset(()=>{this.#A();});}get(e$1,n){const i=this.#V(false,e$1,n),t=this.#E(i);if(e(t))throw new B(O.invalidOperation,`Unexpected asynchronous service when resolving service "${t$1(e$1)}"`);return t}getAll(e$1,n){const i=this.#V(true,e$1,n),t=this.#E(i);if(e(t))throw new B(O.invalidOperation,`Unexpected asynchronous service when resolving service "${t$1(e$1)}"`);return t}async getAllAsync(e,n){const i=this.#V(true,e,n);return this.#E(i)}async getAsync(e,n){const i=this.#V(false,e,n);return this.#E(i)}onPlan(e){this.#j.push(e);}#A(){this.#D=this.#T();}#L(e,n,i){const t=i?.name,r=i?.optional??false,a=i?.tag;return e?{chained:i?.chained??false,isMultiple:e,name:t,optional:r,serviceIdentifier:n,tag:a}:{isMultiple:e,name:t,optional:r,serviceIdentifier:n,tag:a}}#$(e,n,i){const t={autobindOptions:i?.autobind??this.#F?{scope:this.#a}:void 0,operations:this.#P.planParamsOperations,rootConstraints:this.#q(e,n,i),servicesBranch:[]};return this.#G(t,i),t}#q(e,n,i){return n?{chained:i?.chained??false,isMultiple:n,serviceIdentifier:e}:{isMultiple:n,serviceIdentifier:e}}#V(e,n,i){const t=this.#L(e,n,i),r=this.#h.planResultCacheService.get(t);if(void 0!==r)return r;const a=Ke(this.#$(n,e,i));for(const e of this.#j)e(t,a);return a}#T(){return {get:this.get.bind(this),getAll:this.getAll.bind(this),getAllAsync:this.getAllAsync.bind(this),getAsync:this.getAsync.bind(this)}}#E(e){return Ct({context:this.#D,getActivations:this.#U,planResult:e,requestScopeCache:new Map})}#G(e,n){ void 0!==n&&(void 0!==n.name&&(e.rootConstraints.name=n.name),true===n.optional&&(e.rootConstraints.isOptional=true),void 0!==n.tag&&(e.rootConstraints.tag={key:n.tag.key,value:n.tag.value}),e.rootConstraints.isMultiple&&(e.rootConstraints.chained=n?.chained??false));}}let Z$1 = class Z{#h;#H;constructor(e){this.#h=e,this.#H=[];}restore(){const e=this.#H.pop();if(void 0===e)throw new B(O.invalidOperation,"No snapshot available to restore");this.#h.reset(e.activationService,e.bindingService,e.deactivationService);}snapshot(){this.#H.push({activationService:this.#h.activationService.clone(),bindingService:this.#h.bindingService.clone(),deactivationService:this.#h.deactivationService.clone()});}};const ee$1=d.Transient;class ne{#y;#_;#z;#h;#O;#K;constructor(e){const n=e?.autobind??false,i=e?.defaultScope??ee$1;this.#h=this.#X(e,n,i);const t=new X$1(this.#h),r=new J(t,this.#h),a=new K(this.#h);this.#y=new _(a.deactivationParams,i,r,this.#h),this.#_=new z(this.#y,a.deactivationParams,i,r,this.#h),this.#O=new Y(t,this.#h,n,i),this.#z=new Q(this,this.#h,this.#O),this.#K=new Z$1(this.#h);}bind(e){return this.#y.bind(e)}get(e,n){return this.#O.get(e,n)}getAll(e,n){return this.#O.getAll(e,n)}async getAllAsync(e,n){return this.#O.getAllAsync(e,n)}async getAsync(e,n){return this.#O.getAsync(e,n)}isBound(e,n){return this.#y.isBound(e,n)}isCurrentBound(e,n){return this.#y.isCurrentBound(e,n)}async load(...e){return this.#_.load(...e)}loadSync(...e){this.#_.loadSync(...e);}onActivation(e,n){this.#h.activationService.add(n,{serviceId:e});}onDeactivation(e,n){this.#h.deactivationService.add(n,{serviceId:e});}register(e){this.#z.register(this,e);}restore(){this.#K.restore();}async rebind(e){return this.#y.rebind(e)}rebindSync(e){return this.#y.rebindSync(e)}snapshot(){this.#K.snapshot();}async unbind(e){await this.#y.unbind(e);}async unbindAll(){return this.#y.unbindAll()}unbindSync(e){this.#y.unbindSync(e);}async unload(...e){return this.#_.unload(...e)}unloadSync(...e){this.#_.unloadSync(...e);}#J(e,n){if(e)return {scope:n}}#X(e,n,i){const t=this.#J(n,i);if(void 0===e?.parent)return new W$1(v.build(()=>{}),T$2.build(()=>{},t),j$2.build(()=>{}),new Ye);const r=new Ye,a=e.parent;return a.#h.planResultCacheService.subscribe(r),new W$1(v.build(()=>a.#h.activationService),T$2.build(()=>a.#h.bindingService,t),j$2.build(()=>a.#h.deactivationService),r)}}
+const I=Symbol.for("@inversifyjs/container/bindingIdentifier");function A$1(e){return "object"==typeof e&&null!==e&&true===e[I]}class P{static always=e=>true}const C=Symbol.for("@inversifyjs/container/InversifyContainerError");class B extends Error{[C];kind;constructor(e,n,i){super(n,i),this[C]=true,this.kind=e;}static is(e){return "object"==typeof e&&null!==e&&true===e[C]}static isErrorOfKind(e,n){return B.is(e)&&e.kind===n}}var O;function x$2(e){return {[I]:true,id:e.id}}function k(e){return n=>{for(let i=n.getAncestor();void 0!==i;i=i.getAncestor())if(e(i))return  true;return  false}}function N(e){return n=>n.name===e}function F(e){return n=>n.serviceIdentifier===e}function U(e,n){return i=>i.tags.has(e)&&i.tags.get(e)===n}function D(e){return void 0===e.name&&0===e.tags.size}function j$1(e){const n=k(e);return e=>!n(e)}function T$1(e){return n=>{const i=n.getAncestor();return void 0===i||!e(i)}}function V(e){return n=>{const i=n.getAncestor();return void 0!==i&&e(i)}}!function(e){e[e.invalidOperation=0]="invalidOperation";}(O||(O={}));class E{#i;constructor(e){this.#i=e;}getIdentifier(){return x$2(this.#i)}inRequestScope(){return this.#i.scope=d.Request,new G(this.#i)}inSingletonScope(){return this.#i.scope=d.Singleton,new G(this.#i)}inTransientScope(){return this.#i.scope=d.Transient,new G(this.#i)}}let L$1 = class L{#t;#r;#a;#s;constructor(e,n,i,t){this.#t=e,this.#r=n,this.#a=i,this.#s=t;}to(e){const n=N$1(e),i={cache:{isRight:false,value:void 0},id:c$1(),implementationType:e,isSatisfiedBy:P.always,moduleId:this.#r,onActivation:void 0,onDeactivation:void 0,scope:n.scope??this.#a,serviceIdentifier:this.#s,type:u.Instance};return this.#t(i),new H(i)}toSelf(){if("function"!=typeof this.#s)throw new Error('"toSelf" function can only be applied when a newable function is used as service identifier');return this.to(this.#s)}toConstantValue(e){const n={cache:{isRight:false,value:void 0},id:c$1(),isSatisfiedBy:P.always,moduleId:this.#r,onActivation:void 0,onDeactivation:void 0,scope:d.Singleton,serviceIdentifier:this.#s,type:u.ConstantValue,value:e};return this.#t(n),new G(n)}toDynamicValue(e){const n={cache:{isRight:false,value:void 0},id:c$1(),isSatisfiedBy:P.always,moduleId:this.#r,onActivation:void 0,onDeactivation:void 0,scope:this.#a,serviceIdentifier:this.#s,type:u.DynamicValue,value:e};return this.#t(n),new H(n)}toResolvedValue(e,n){const i={cache:{isRight:false,value:void 0},factory:e,id:c$1(),isSatisfiedBy:P.always,metadata:this.#o(n),moduleId:this.#r,onActivation:void 0,onDeactivation:void 0,scope:this.#a,serviceIdentifier:this.#s,type:u.ResolvedValue};return this.#t(i),new H(i)}toFactory(e){const n={cache:{isRight:false,value:void 0},factory:e,id:c$1(),isSatisfiedBy:P.always,moduleId:this.#r,onActivation:void 0,onDeactivation:void 0,scope:d.Singleton,serviceIdentifier:this.#s,type:u.Factory};return this.#t(n),new G(n)}toProvider(e){const n={cache:{isRight:false,value:void 0},id:c$1(),isSatisfiedBy:P.always,moduleId:this.#r,onActivation:void 0,onDeactivation:void 0,provider:e,scope:d.Singleton,serviceIdentifier:this.#s,type:u.Provider};return this.#t(n),new G(n)}toService(e){const n={id:c$1(),isSatisfiedBy:P.always,moduleId:this.#r,serviceIdentifier:this.#s,targetServiceIdentifier:e,type:u.ServiceRedirection};this.#t(n);}#o(e){return {arguments:(e??[]).map(e=>function(e){return "object"==typeof e&&!r.is(e)}(e)?function(e){return  true===e.isMultiple}(e)?{chained:e.chained??false,kind:fe.multipleInjection,name:e.name,optional:e.optional??false,tags:new Map((e.tags??[]).map(e=>[e.key,e.value])),value:e.serviceIdentifier}:{kind:fe.singleInjection,name:e.name,optional:e.optional??false,tags:new Map((e.tags??[]).map(e=>[e.key,e.value])),value:e.serviceIdentifier}:{kind:fe.singleInjection,name:void 0,optional:false,tags:new Map,value:e})}}};class ${#i;constructor(e){this.#i=e;}getIdentifier(){return x$2(this.#i)}onActivation(e){return this.#i.onActivation=e,new q(this.#i)}onDeactivation(e){if(this.#i.onDeactivation=e,this.#i.scope!==d.Singleton)throw new B(O.invalidOperation,`Binding for service "${t$1(this.#i.serviceIdentifier)}" has a deactivation function, but its scope is not singleton. Deactivation functions can only be used with singleton bindings.`);return new q(this.#i)}}class q{#i;constructor(e){this.#i=e;}getIdentifier(){return x$2(this.#i)}when(e){return this.#i.isSatisfiedBy=e,new $(this.#i)}whenAnyAncestor(e){return this.when(k(e))}whenAnyAncestorIs(e){return this.when(k(F(e)))}whenAnyAncestorNamed(e){return this.when(function(e){return k(N(e))}(e))}whenAnyAncestorTagged(e,n){return this.when(function(e,n){return k(U(e,n))}(e,n))}whenDefault(){return this.when(D)}whenNamed(e){return this.when(N(e))}whenNoParent(e){return this.when(T$1(e))}whenNoParentIs(e){return this.when(T$1(F(e)))}whenNoParentNamed(e){return this.when(function(e){return T$1(N(e))}(e))}whenNoParentTagged(e,n){return this.when(function(e,n){return T$1(U(e,n))}(e,n))}whenParent(e){return this.when(V(e))}whenParentIs(e){return this.when(V(F(e)))}whenParentNamed(e){return this.when(function(e){return V(N(e))}(e))}whenParentTagged(e,n){return this.when(function(e,n){return V(U(e,n))}(e,n))}whenTagged(e,n){return this.when(U(e,n))}whenNoAncestor(e){return this.when(j$1(e))}whenNoAncestorIs(e){return this.when(j$1(F(e)))}whenNoAncestorNamed(e){return this.when(function(e){return j$1(N(e))}(e))}whenNoAncestorTagged(e,n){return this.when(function(e,n){return j$1(U(e,n))}(e,n))}}class G extends q{#c;constructor(e){super(e),this.#c=new $(e);}onActivation(e){return this.#c.onActivation(e)}onDeactivation(e){return this.#c.onDeactivation(e)}}class H extends G{#d;constructor(e){super(e),this.#d=new E(e);}inRequestScope(){return this.#d.inRequestScope()}inSingletonScope(){return this.#d.inSingletonScope()}inTransientScope(){return this.#d.inTransientScope()}}class _{#l;#a;#u;#h;constructor(e,n,i,t){this.#l=e,this.#a=n,this.#u=i,this.#h=t;}bind(e){return new L$1(e=>{this.#v(e);},void 0,this.#a,e)}isBound(e,n){const i=this.#h.bindingService.get(e);return this.#g(e,i,n)}isCurrentBound(e,n){const i=this.#h.bindingService.getNonParentBindings(e);return this.#g(e,i,n)}async rebind(e){return await this.unbind(e),this.bind(e)}rebindSync(e){return this.unbindSync(e),this.bind(e)}async unbind(e){await this.#f(e);}async unbindAll(){const e=[...this.#h.bindingService.getNonParentBoundServices()];await Promise.all(e.map(async e=>Dt(this.#l,e)));for(const n of e)this.#h.activationService.removeAllByServiceId(n),this.#h.bindingService.removeAllByServiceId(n),this.#h.deactivationService.removeAllByServiceId(n);this.#h.planResultCacheService.clearCache();}unbindSync(e){ void 0!==this.#f(e)&&this.#b(e);}#v(e){this.#h.bindingService.set(e),this.#u.invalidateService({binding:e,kind:qe.bindingAdded});}#b(e){let n;if(A$1(e)){const t=this.#h.bindingService.getById(e.id),r=(i=t,function(e){if(void 0===e)return;const n=e.next();return  true!==n.done?n.value:void 0}(i?.[Symbol.iterator]()))?.serviceIdentifier;n=void 0===r?"Unexpected asynchronous deactivation when unbinding binding identifier. Consider using Container.unbind() instead.":`Unexpected asynchronous deactivation when unbinding "${t$1(r)}" binding. Consider using Container.unbind() instead.`;}else n=`Unexpected asynchronous deactivation when unbinding "${t$1(e)}" service. Consider using Container.unbind() instead.`;var i;throw new B(O.invalidOperation,n)}#f(e){return A$1(e)?this.#p(e):this.#S(e)}#p(e){const n=this.#h.bindingService.getById(e.id),i=void 0===n?void 0:[...n],t=kt(this.#l,n);if(void 0!==t)return t.then(()=>{this.#M(i,e);});this.#M(i,e);}#M(e,n){if(this.#h.bindingService.removeById(n.id),void 0!==e)for(const n of e)this.#u.invalidateService({binding:n,kind:qe.bindingRemoved});}#S(e){const n=this.#h.bindingService.get(e),i=void 0===n?void 0:[...n],t=kt(this.#l,n);if(void 0!==t)return t.then(()=>{this.#R(e,i);});this.#R(e,i);}#R(e,n){if(this.#h.activationService.removeAllByServiceId(e),this.#h.bindingService.removeAllByServiceId(e),this.#h.deactivationService.removeAllByServiceId(e),void 0!==n)for(const e of n)this.#u.invalidateService({binding:e,kind:qe.bindingRemoved});}#g(e,n,i){if(void 0===n)return  false;const t={getAncestor:()=>{},name:i?.name,serviceIdentifier:e,tags:new Map};void 0!==i?.tag&&t.tags.set(i.tag.key,i.tag.value);for(const e of n)if(e.isSatisfiedBy(t))return  true;return  false}}class z{#y;#l;#a;#u;#h;constructor(e,n,i,t,r){this.#y=e,this.#l=n,this.#a=i,this.#u=t,this.#h=r;}async load(...e){await Promise.all(this.#n(...e));}loadSync(...e){const n=this.#n(...e);for(const e of n)if(void 0!==e)throw new B(O.invalidOperation,"Unexpected asynchronous module load. Consider using Container.load() instead.")}async unload(...e){await Promise.all(this.#m(...e)),this.#w(e);}unloadSync(...e){const n=this.#m(...e);for(const e of n)if(void 0!==e)throw new B(O.invalidOperation,"Unexpected asynchronous module unload. Consider using Container.unload() instead.");this.#w(e);}#I(e){return {bind:n=>new L$1(e=>{this.#v(e);},e,this.#a,n),isBound:this.#y.isBound.bind(this.#y),onActivation:(n,i)=>{this.#h.activationService.add(i,{moduleId:e,serviceId:n});},onDeactivation:(n,i)=>{this.#h.deactivationService.add(i,{moduleId:e,serviceId:n});},rebind:this.#y.rebind.bind(this.#y),rebindSync:this.#y.rebindSync.bind(this.#y),unbind:this.#y.unbind.bind(this.#y),unbindSync:this.#y.unbindSync.bind(this.#y)}}#w(e){for(const n of e)this.#h.activationService.removeAllByModuleId(n.id),this.#h.bindingService.removeAllByModuleId(n.id),this.#h.deactivationService.removeAllByModuleId(n.id);this.#h.planResultCacheService.clearCache();}#n(...e){return e.map(e=>e.load(this.#I(e.id)))}#v(e){this.#h.bindingService.set(e),this.#u.invalidateService({binding:e,kind:qe.bindingAdded});}#m(...e){return e.map(e=>$t(this.#l,e.id))}}class K{deactivationParams;constructor(e){this.deactivationParams=function(e){return {getBindings:e.bindingService.get.bind(e.bindingService),getBindingsFromModule:e.bindingService.getByModuleId.bind(e.bindingService),getClassMetadata:N$1,getDeactivations:e.deactivationService.get.bind(e.deactivationService)}}(e),e.onReset(()=>{!function(e,n){n.getBindings=e.bindingService.get.bind(e.bindingService),n.getBindingsFromModule=e.bindingService.getByModuleId.bind(e.bindingService),n.getDeactivations=e.deactivationService.get.bind(e.deactivationService);}(e,this.deactivationParams);});}}let X$1 = class X{planParamsOperations;#h;constructor(e){this.#h=e,this.planParamsOperations={getBindings:this.#h.bindingService.get.bind(this.#h.bindingService),getBindingsChained:this.#h.bindingService.getChained.bind(this.#h.bindingService),getClassMetadata:N$1,getPlan:this.#h.planResultCacheService.get.bind(this.#h.planResultCacheService),setBinding:this.#v.bind(this),setNonCachedServiceNode:this.#h.planResultCacheService.setNonCachedServiceNode.bind(this.#h.planResultCacheService),setPlan:this.#h.planResultCacheService.set.bind(this.#h.planResultCacheService)},this.#h.onReset(()=>{this.#A();});}#A(){this.planParamsOperations.getBindings=this.#h.bindingService.get.bind(this.#h.bindingService),this.planParamsOperations.getBindingsChained=this.#h.bindingService.getChained.bind(this.#h.bindingService),this.planParamsOperations.setBinding=this.#v.bind(this);}#v(e){this.#h.bindingService.set(e),this.#h.planResultCacheService.invalidateServiceBinding({binding:e,kind:qe.bindingAdded,operations:this.planParamsOperations});}};class J{#P;#h;constructor(e,n){this.#P=e,this.#h=n;}invalidateService(e){this.#h.planResultCacheService.invalidateServiceBinding({...e,operations:this.#P.planParamsOperations});}}class Q{#C;#B;#O;#h;constructor(e,n,i){this.#h=n,this.#O=i,this.#C=this.#x(e),this.#B=this.#k();}register(e,n){const i=new n(e,this.#B);if(true!==i[t])throw new B(O.invalidOperation,"Invalid plugin. The plugin must extend the Plugin class");i.load(this.#C);}#x(e){return {define:(n,i)=>{if(Object.prototype.hasOwnProperty.call(e,n))throw new B(O.invalidOperation,`Container already has a method named "${String(n)}"`);e[n]=i;},onPlan:this.#O.onPlan.bind(this.#O)}}#k(){const e=this.#h;return {get activationService(){return e.activationService},get bindingService(){return e.bindingService},get deactivationService(){return e.deactivationService},get planResultCacheService(){return e.planResultCacheService}}}}let W$1 = class W{activationService;bindingService;deactivationService;planResultCacheService;#N;constructor(e,n,i,t){this.activationService=e,this.bindingService=n,this.deactivationService=i,this.planResultCacheService=t,this.#N=[];}reset(e,n,i){this.activationService=e,this.bindingService=n,this.deactivationService=i,this.planResultCacheService.clearCache();for(const e of this.#N)e();}onReset(e){this.#N.push(e);}};class Y{#F;#a;#U;#D;#j;#P;#h;constructor(e,n,i,t){this.#P=e,this.#h=n,this.#D=this.#T(),this.#F=i,this.#a=t,this.#U=e=>this.#h.activationService.get(e),this.#j=[],this.#h.onReset(()=>{this.#A();});}get(e$1,n){const i=this.#V(false,e$1,n),t=this.#E(i);if(e(t))throw new B(O.invalidOperation,`Unexpected asynchronous service when resolving service "${t$1(e$1)}"`);return t}getAll(e$1,n){const i=this.#V(true,e$1,n),t=this.#E(i);if(e(t))throw new B(O.invalidOperation,`Unexpected asynchronous service when resolving service "${t$1(e$1)}"`);return t}async getAllAsync(e,n){const i=this.#V(true,e,n);return this.#E(i)}async getAsync(e,n){const i=this.#V(false,e,n);return this.#E(i)}onPlan(e){this.#j.push(e);}#A(){this.#D=this.#T();}#L(e,n,i){const t=i?.name,r=i?.optional??false,a=i?.tag;return e?{chained:i?.chained??false,isMultiple:e,name:t,optional:r,serviceIdentifier:n,tag:a}:{isMultiple:e,name:t,optional:r,serviceIdentifier:n,tag:a}}#$(e,n,i){const t={autobindOptions:i?.autobind??this.#F?{scope:this.#a}:void 0,operations:this.#P.planParamsOperations,rootConstraints:this.#q(e,n,i),servicesBranch:[]};return this.#G(t,i),t}#q(e,n,i){return n?{chained:i?.chained??false,isMultiple:n,serviceIdentifier:e}:{isMultiple:n,serviceIdentifier:e}}#V(e,n,i){const t=this.#L(e,n,i),r=this.#h.planResultCacheService.get(t);if(void 0!==r)return r;const a=Ke(this.#$(n,e,i));for(const e of this.#j)e(t,a);return a}#T(){return {get:this.get.bind(this),getAll:this.getAll.bind(this),getAllAsync:this.getAllAsync.bind(this),getAsync:this.getAsync.bind(this)}}#E(e){return Ct({context:this.#D,getActivations:this.#U,planResult:e,requestScopeCache:new Map})}#G(e,n){ void 0!==n&&(void 0!==n.name&&(e.rootConstraints.name=n.name),true===n.optional&&(e.rootConstraints.isOptional=true),void 0!==n.tag&&(e.rootConstraints.tag={key:n.tag.key,value:n.tag.value}),e.rootConstraints.isMultiple&&(e.rootConstraints.chained=n?.chained??false));}}let Z$1 = class Z{#h;#H;constructor(e){this.#h=e,this.#H=[];}restore(){const e=this.#H.pop();if(void 0===e)throw new B(O.invalidOperation,"No snapshot available to restore");this.#h.reset(e.activationService,e.bindingService,e.deactivationService);}snapshot(){this.#H.push({activationService:this.#h.activationService.clone(),bindingService:this.#h.bindingService.clone(),deactivationService:this.#h.deactivationService.clone()});}};const ee$1=d.Transient;class ne{#y;#_;#z;#h;#O;#K;constructor(e){const n=e?.autobind??false,i=e?.defaultScope??ee$1;this.#h=this.#X(e,n,i);const t=new X$1(this.#h),r=new J(t,this.#h),a=new K(this.#h);this.#y=new _(a.deactivationParams,i,r,this.#h),this.#_=new z(this.#y,a.deactivationParams,i,r,this.#h),this.#O=new Y(t,this.#h,n,i),this.#z=new Q(this,this.#h,this.#O),this.#K=new Z$1(this.#h);}bind(e){return this.#y.bind(e)}get(e,n){return this.#O.get(e,n)}getAll(e,n){return this.#O.getAll(e,n)}async getAllAsync(e,n){return this.#O.getAllAsync(e,n)}async getAsync(e,n){return this.#O.getAsync(e,n)}isBound(e,n){return this.#y.isBound(e,n)}isCurrentBound(e,n){return this.#y.isCurrentBound(e,n)}async load(...e){return this.#_.load(...e)}loadSync(...e){this.#_.loadSync(...e);}onActivation(e,n){this.#h.activationService.add(n,{serviceId:e});}onDeactivation(e,n){this.#h.deactivationService.add(n,{serviceId:e});}register(e){this.#z.register(this,e);}restore(){this.#K.restore();}async rebind(e){return this.#y.rebind(e)}rebindSync(e){return this.#y.rebindSync(e)}snapshot(){this.#K.snapshot();}async unbind(e){await this.#y.unbind(e);}async unbindAll(){return this.#y.unbindAll()}unbindSync(e){this.#y.unbindSync(e);}async unload(...e){return this.#_.unload(...e)}unloadSync(...e){this.#_.unloadSync(...e);}#J(e,n){if(e)return {scope:n}}#X(e,n,i){const t=this.#J(n,i);if(void 0===e?.parent)return new W$1(v.build(()=>{}),T$2.build(()=>{},t),j$2.build(()=>{}),new Ye);const r=new Ye,a=e.parent;return a.#h.planResultCacheService.subscribe(r),new W$1(v.build(()=>a.#h.activationService),T$2.build(()=>a.#h.bindingService,t),j$2.build(()=>a.#h.deactivationService),r)}}
 
 var NTSex = /* @__PURE__ */ ((NTSex2) => {
   NTSex2[NTSex2["GENDER_UNKOWN"] = 0] = "GENDER_UNKOWN";
@@ -5956,6 +5957,707 @@ class StringType {
     }
 }
 
+var require$1 = createRequire('/');
+// DEFLATE is a complex format; to read this code, you should probably check the RFC first:
+// https://tools.ietf.org/html/rfc1951
+// You may also wish to take a look at the guide I made about this program:
+// https://gist.github.com/101arrowz/253f31eb5abc3d9275ab943003ffecad
+// Some of the following code is similar to that of UZIP.js:
+// https://github.com/photopea/UZIP.js
+// However, the vast majority of the codebase has diverged from UZIP.js to increase performance and reduce bundle size.
+// Sometimes 0 will appear where -1 would be more appropriate. This is because using a uint
+// is better for memory in most engines (I *think*).
+// Mediocre shim
+var Worker;
+var workerAdd = ";var __w=require('worker_threads');__w.parentPort.on('message',function(m){onmessage({data:m})}),postMessage=function(m,t){__w.parentPort.postMessage(m,t)},close=process.exit;self=global";
+try {
+    Worker = require$1('worker_threads').Worker;
+}
+catch (e) {
+}
+var wk = Worker ? function (c, _, msg, transfer, cb) {
+    var done = false;
+    var w = new Worker(c + workerAdd, { eval: true })
+        .on('error', function (e) { return cb(e, null); })
+        .on('message', function (m) { return cb(null, m); })
+        .on('exit', function (c) {
+        if (c && !done)
+            cb(new Error('exited with code ' + c), null);
+    });
+    w.postMessage(msg, transfer);
+    w.terminate = function () {
+        done = true;
+        return Worker.prototype.terminate.call(w);
+    };
+    return w;
+} : function (_, __, ___, ____, cb) {
+    setImmediate(function () { return cb(new Error('async operations unsupported - update to Node 12+ (or Node 10-11 with the --experimental-worker CLI flag)'), null); });
+    var NOP = function () { };
+    return {
+        terminate: NOP,
+        postMessage: NOP
+    };
+};
+
+// aliases for shorter compressed code (most minifers don't do this)
+var u8 = Uint8Array, u16 = Uint16Array, i32 = Int32Array;
+// fixed length extra bits
+var fleb = new u8([0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 0, /* unused */ 0, 0, /* impossible */ 0]);
+// fixed distance extra bits
+var fdeb = new u8([0, 0, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11, 12, 12, 13, 13, /* unused */ 0, 0]);
+// code length index map
+var clim = new u8([16, 17, 18, 0, 8, 7, 9, 6, 10, 5, 11, 4, 12, 3, 13, 2, 14, 1, 15]);
+// get base, reverse index map from extra bits
+var freb = function (eb, start) {
+    var b = new u16(31);
+    for (var i = 0; i < 31; ++i) {
+        b[i] = start += 1 << eb[i - 1];
+    }
+    // numbers here are at max 18 bits
+    var r = new i32(b[30]);
+    for (var i = 1; i < 30; ++i) {
+        for (var j = b[i]; j < b[i + 1]; ++j) {
+            r[j] = ((j - b[i]) << 5) | i;
+        }
+    }
+    return { b: b, r: r };
+};
+var _a$y = freb(fleb, 2), fl = _a$y.b, revfl = _a$y.r;
+// we can ignore the fact that the other numbers are wrong; they never happen anyway
+fl[28] = 258, revfl[258] = 28;
+var _b = freb(fdeb, 0), fd = _b.b;
+// map of value to reverse (assuming 16 bits)
+var rev = new u16(32768);
+for (var i = 0; i < 32768; ++i) {
+    // reverse table algorithm from SO
+    var x$1 = ((i & 0xAAAA) >> 1) | ((i & 0x5555) << 1);
+    x$1 = ((x$1 & 0xCCCC) >> 2) | ((x$1 & 0x3333) << 2);
+    x$1 = ((x$1 & 0xF0F0) >> 4) | ((x$1 & 0x0F0F) << 4);
+    rev[i] = (((x$1 & 0xFF00) >> 8) | ((x$1 & 0x00FF) << 8)) >> 1;
+}
+// create huffman tree from u8 "map": index -> code length for code index
+// mb (max bits) must be at most 15
+// TODO: optimize/split up?
+var hMap = (function (cd, mb, r) {
+    var s = cd.length;
+    // index
+    var i = 0;
+    // u16 "map": index -> # of codes with bit length = index
+    var l = new u16(mb);
+    // length of cd must be 288 (total # of codes)
+    for (; i < s; ++i) {
+        if (cd[i])
+            ++l[cd[i] - 1];
+    }
+    // u16 "map": index -> minimum code for bit length = index
+    var le = new u16(mb);
+    for (i = 1; i < mb; ++i) {
+        le[i] = (le[i - 1] + l[i - 1]) << 1;
+    }
+    var co;
+    if (r) {
+        // u16 "map": index -> number of actual bits, symbol for code
+        co = new u16(1 << mb);
+        // bits to remove for reverser
+        var rvb = 15 - mb;
+        for (i = 0; i < s; ++i) {
+            // ignore 0 lengths
+            if (cd[i]) {
+                // num encoding both symbol and bits read
+                var sv = (i << 4) | cd[i];
+                // free bits
+                var r_1 = mb - cd[i];
+                // start value
+                var v = le[cd[i] - 1]++ << r_1;
+                // m is end value
+                for (var m = v | ((1 << r_1) - 1); v <= m; ++v) {
+                    // every 16 bit value starting with the code yields the same result
+                    co[rev[v] >> rvb] = sv;
+                }
+            }
+        }
+    }
+    else {
+        co = new u16(s);
+        for (i = 0; i < s; ++i) {
+            if (cd[i]) {
+                co[i] = rev[le[cd[i] - 1]++] >> (15 - cd[i]);
+            }
+        }
+    }
+    return co;
+});
+// fixed length tree
+var flt = new u8(288);
+for (var i = 0; i < 144; ++i)
+    flt[i] = 8;
+for (var i = 144; i < 256; ++i)
+    flt[i] = 9;
+for (var i = 256; i < 280; ++i)
+    flt[i] = 7;
+for (var i = 280; i < 288; ++i)
+    flt[i] = 8;
+// fixed distance tree
+var fdt = new u8(32);
+for (var i = 0; i < 32; ++i)
+    fdt[i] = 5;
+// fixed length map
+var flrm = /*#__PURE__*/ hMap(flt, 9, 1);
+// fixed distance map
+var fdrm = /*#__PURE__*/ hMap(fdt, 5, 1);
+// find max of array
+var max$1 = function (a) {
+    var m = a[0];
+    for (var i = 1; i < a.length; ++i) {
+        if (a[i] > m)
+            m = a[i];
+    }
+    return m;
+};
+// read d, starting at bit p and mask with m
+var bits = function (d, p, m) {
+    var o = (p / 8) | 0;
+    return ((d[o] | (d[o + 1] << 8)) >> (p & 7)) & m;
+};
+// read d, starting at bit p continuing for at least 16 bits
+var bits16 = function (d, p) {
+    var o = (p / 8) | 0;
+    return ((d[o] | (d[o + 1] << 8) | (d[o + 2] << 16)) >> (p & 7));
+};
+// get end of byte
+var shft = function (p) { return ((p + 7) / 8) | 0; };
+// typed array slice - allows garbage collector to free original reference,
+// while being more compatible than .slice
+var slc = function (v, s, e) {
+    if (s == null || s < 0)
+        s = 0;
+    if (e == null || e > v.length)
+        e = v.length;
+    // can't use .constructor in case user-supplied
+    return new u8(v.subarray(s, e));
+};
+// error codes
+var ec = [
+    'unexpected EOF',
+    'invalid block type',
+    'invalid length/literal',
+    'invalid distance',
+    'stream finished',
+    'no stream handler',
+    ,
+    'no callback',
+    'invalid UTF-8 data',
+    'extra field too long',
+    'date not in range 1980-2099',
+    'filename too long',
+    'stream finishing',
+    'invalid zip data'
+    // determined by unknown compression method
+];
+var err = function (ind, msg, nt) {
+    var e = new Error(msg || ec[ind]);
+    e.code = ind;
+    if (Error.captureStackTrace)
+        Error.captureStackTrace(e, err);
+    if (!nt)
+        throw e;
+    return e;
+};
+// expands raw DEFLATE data
+var inflt = function (dat, st, buf, dict) {
+    // source length       dict length
+    var sl = dat.length, dl = dict ? dict.length : 0;
+    if (!sl || st.f && !st.l)
+        return buf || new u8(0);
+    var noBuf = !buf;
+    // have to estimate size
+    var resize = noBuf || st.i != 2;
+    // no state
+    var noSt = st.i;
+    // Assumes roughly 33% compression ratio average
+    if (noBuf)
+        buf = new u8(sl * 3);
+    // ensure buffer can fit at least l elements
+    var cbuf = function (l) {
+        var bl = buf.length;
+        // need to increase size to fit
+        if (l > bl) {
+            // Double or set to necessary, whichever is greater
+            var nbuf = new u8(Math.max(bl * 2, l));
+            nbuf.set(buf);
+            buf = nbuf;
+        }
+    };
+    //  last chunk         bitpos           bytes
+    var final = st.f || 0, pos = st.p || 0, bt = st.b || 0, lm = st.l, dm = st.d, lbt = st.m, dbt = st.n;
+    // total bits
+    var tbts = sl * 8;
+    do {
+        if (!lm) {
+            // BFINAL - this is only 1 when last chunk is next
+            final = bits(dat, pos, 1);
+            // type: 0 = no compression, 1 = fixed huffman, 2 = dynamic huffman
+            var type = bits(dat, pos + 1, 3);
+            pos += 3;
+            if (!type) {
+                // go to end of byte boundary
+                var s = shft(pos) + 4, l = dat[s - 4] | (dat[s - 3] << 8), t = s + l;
+                if (t > sl) {
+                    if (noSt)
+                        err(0);
+                    break;
+                }
+                // ensure size
+                if (resize)
+                    cbuf(bt + l);
+                // Copy over uncompressed data
+                buf.set(dat.subarray(s, t), bt);
+                // Get new bitpos, update byte count
+                st.b = bt += l, st.p = pos = t * 8, st.f = final;
+                continue;
+            }
+            else if (type == 1)
+                lm = flrm, dm = fdrm, lbt = 9, dbt = 5;
+            else if (type == 2) {
+                //  literal                            lengths
+                var hLit = bits(dat, pos, 31) + 257, hcLen = bits(dat, pos + 10, 15) + 4;
+                var tl = hLit + bits(dat, pos + 5, 31) + 1;
+                pos += 14;
+                // length+distance tree
+                var ldt = new u8(tl);
+                // code length tree
+                var clt = new u8(19);
+                for (var i = 0; i < hcLen; ++i) {
+                    // use index map to get real code
+                    clt[clim[i]] = bits(dat, pos + i * 3, 7);
+                }
+                pos += hcLen * 3;
+                // code lengths bits
+                var clb = max$1(clt), clbmsk = (1 << clb) - 1;
+                // code lengths map
+                var clm = hMap(clt, clb, 1);
+                for (var i = 0; i < tl;) {
+                    var r = clm[bits(dat, pos, clbmsk)];
+                    // bits read
+                    pos += r & 15;
+                    // symbol
+                    var s = r >> 4;
+                    // code length to copy
+                    if (s < 16) {
+                        ldt[i++] = s;
+                    }
+                    else {
+                        //  copy   count
+                        var c = 0, n = 0;
+                        if (s == 16)
+                            n = 3 + bits(dat, pos, 3), pos += 2, c = ldt[i - 1];
+                        else if (s == 17)
+                            n = 3 + bits(dat, pos, 7), pos += 3;
+                        else if (s == 18)
+                            n = 11 + bits(dat, pos, 127), pos += 7;
+                        while (n--)
+                            ldt[i++] = c;
+                    }
+                }
+                //    length tree                 distance tree
+                var lt = ldt.subarray(0, hLit), dt = ldt.subarray(hLit);
+                // max length bits
+                lbt = max$1(lt);
+                // max dist bits
+                dbt = max$1(dt);
+                lm = hMap(lt, lbt, 1);
+                dm = hMap(dt, dbt, 1);
+            }
+            else
+                err(1);
+            if (pos > tbts) {
+                if (noSt)
+                    err(0);
+                break;
+            }
+        }
+        // Make sure the buffer can hold this + the largest possible addition
+        // Maximum chunk size (practically, theoretically infinite) is 2^17
+        if (resize)
+            cbuf(bt + 131072);
+        var lms = (1 << lbt) - 1, dms = (1 << dbt) - 1;
+        var lpos = pos;
+        for (;; lpos = pos) {
+            // bits read, code
+            var c = lm[bits16(dat, pos) & lms], sym = c >> 4;
+            pos += c & 15;
+            if (pos > tbts) {
+                if (noSt)
+                    err(0);
+                break;
+            }
+            if (!c)
+                err(2);
+            if (sym < 256)
+                buf[bt++] = sym;
+            else if (sym == 256) {
+                lpos = pos, lm = null;
+                break;
+            }
+            else {
+                var add = sym - 254;
+                // no extra bits needed if less
+                if (sym > 264) {
+                    // index
+                    var i = sym - 257, b = fleb[i];
+                    add = bits(dat, pos, (1 << b) - 1) + fl[i];
+                    pos += b;
+                }
+                // dist
+                var d = dm[bits16(dat, pos) & dms], dsym = d >> 4;
+                if (!d)
+                    err(3);
+                pos += d & 15;
+                var dt = fd[dsym];
+                if (dsym > 3) {
+                    var b = fdeb[dsym];
+                    dt += bits16(dat, pos) & (1 << b) - 1, pos += b;
+                }
+                if (pos > tbts) {
+                    if (noSt)
+                        err(0);
+                    break;
+                }
+                if (resize)
+                    cbuf(bt + 131072);
+                var end = bt + add;
+                if (bt < dt) {
+                    var shift = dl - dt, dend = Math.min(dt, end);
+                    if (shift + bt < 0)
+                        err(3);
+                    for (; bt < dend; ++bt)
+                        buf[bt] = dict[shift + bt];
+                }
+                for (; bt < end; ++bt)
+                    buf[bt] = buf[bt - dt];
+            }
+        }
+        st.l = lm, st.p = lpos, st.b = bt, st.f = final;
+        if (lm)
+            final = 1, st.m = lbt, st.d = dm, st.n = dbt;
+    } while (!final);
+    // don't reallocate for streams or user buffers
+    return bt != buf.length && noBuf ? slc(buf, 0, bt) : buf.subarray(0, bt);
+};
+// empty
+var et = /*#__PURE__*/ new u8(0);
+// Walmart object spread
+var mrg = function (a, b) {
+    var o = {};
+    for (var k in a)
+        o[k] = a[k];
+    for (var k in b)
+        o[k] = b[k];
+    return o;
+};
+// worker clone
+// This is possibly the craziest part of the entire codebase, despite how simple it may seem.
+// The only parameter to this function is a closure that returns an array of variables outside of the function scope.
+// We're going to try to figure out the variable names used in the closure as strings because that is crucial for workerization.
+// We will return an object mapping of true variable name to value (basically, the current scope as a JS object).
+// The reason we can't just use the original variable names is minifiers mangling the toplevel scope.
+// This took me three weeks to figure out how to do.
+var wcln = function (fn, fnStr, td) {
+    var dt = fn();
+    var st = fn.toString();
+    var ks = st.slice(st.indexOf('[') + 1, st.lastIndexOf(']')).replace(/\s+/g, '').split(',');
+    for (var i = 0; i < dt.length; ++i) {
+        var v = dt[i], k = ks[i];
+        if (typeof v == 'function') {
+            fnStr += ';' + k + '=';
+            var st_1 = v.toString();
+            if (v.prototype) {
+                // for global objects
+                if (st_1.indexOf('[native code]') != -1) {
+                    var spInd = st_1.indexOf(' ', 8) + 1;
+                    fnStr += st_1.slice(spInd, st_1.indexOf('(', spInd));
+                }
+                else {
+                    fnStr += st_1;
+                    for (var t in v.prototype)
+                        fnStr += ';' + k + '.prototype.' + t + '=' + v.prototype[t].toString();
+                }
+            }
+            else
+                fnStr += st_1;
+        }
+        else
+            td[k] = v;
+    }
+    return fnStr;
+};
+var ch = [];
+// clone bufs
+var cbfs = function (v) {
+    var tl = [];
+    for (var k in v) {
+        if (v[k].buffer) {
+            tl.push((v[k] = new v[k].constructor(v[k])).buffer);
+        }
+    }
+    return tl;
+};
+// use a worker to execute code
+var wrkr = function (fns, init, id, cb) {
+    if (!ch[id]) {
+        var fnStr = '', td_1 = {}, m = fns.length - 1;
+        for (var i = 0; i < m; ++i)
+            fnStr = wcln(fns[i], fnStr, td_1);
+        ch[id] = { c: wcln(fns[m], fnStr, td_1), e: td_1 };
+    }
+    var td = mrg({}, ch[id].e);
+    return wk(ch[id].c + ';onmessage=function(e){for(var k in e.data)self[k]=e.data[k];onmessage=' + init.toString() + '}', id, td, cbfs(td), cb);
+};
+// base async inflate fn
+var bInflt = function () { return [u8, u16, i32, fleb, fdeb, clim, fl, fd, flrm, fdrm, rev, ec, hMap, max$1, bits, bits16, shft, slc, err, inflt, inflateSync, pbf, gopt]; };
+// gunzip extra
+var guze = function () { return [gzs, gzl]; };
+// post buf
+var pbf = function (msg) { return postMessage(msg, [msg.buffer]); };
+// get opts
+var gopt = function (o) { return o && {
+    out: o.size && new u8(o.size),
+    dictionary: o.dictionary
+}; };
+// auto stream
+var astrm = function (strm) {
+    strm.ondata = function (dat, final) { return postMessage([dat, final], [dat.buffer]); };
+    return function (ev) {
+        if (ev.data.length) {
+            strm.push(ev.data[0], ev.data[1]);
+            postMessage([ev.data[0].length]);
+        }
+        else
+            strm.flush();
+    };
+};
+// async stream attach
+var astrmify = function (fns, strm, opts, init, id, flush, ext) {
+    var t;
+    var w = wrkr(fns, init, id, function (err, dat) {
+        if (err)
+            w.terminate(), strm.ondata.call(strm, err);
+        else if (!Array.isArray(dat))
+            ext(dat);
+        else if (dat.length == 1) {
+            strm.queuedSize -= dat[0];
+            if (strm.ondrain)
+                strm.ondrain(dat[0]);
+        }
+        else {
+            if (dat[1])
+                w.terminate();
+            strm.ondata.call(strm, err, dat[0], dat[1]);
+        }
+    });
+    w.postMessage(opts);
+    strm.queuedSize = 0;
+    strm.push = function (d, f) {
+        if (!strm.ondata)
+            err(5);
+        if (t)
+            strm.ondata(err(4, 0, 1), null, !!f);
+        strm.queuedSize += d.length;
+        w.postMessage([d, t = f], [d.buffer]);
+    };
+    strm.terminate = function () { w.terminate(); };
+};
+// gzip footer: -8 to -4 = CRC, -4 to -0 is length
+// gzip start
+var gzs = function (d) {
+    if (d[0] != 31 || d[1] != 139 || d[2] != 8)
+        err(6, 'invalid gzip data');
+    var flg = d[3];
+    var st = 10;
+    if (flg & 4)
+        st += (d[10] | d[11] << 8) + 2;
+    for (var zs = (flg >> 3 & 1) + (flg >> 4 & 1); zs > 0; zs -= !d[st++])
+        ;
+    return st + (flg & 2);
+};
+// gzip length
+var gzl = function (d) {
+    var l = d.length;
+    return (d[l - 4] | d[l - 3] << 8 | d[l - 2] << 16 | d[l - 1] << 24) >>> 0;
+};
+// zlib start
+var zls = function (d, dict) {
+    if ((d[0] & 15) != 8 || (d[0] >> 4) > 7 || ((d[0] << 8 | d[1]) % 31))
+        err(6, 'invalid zlib data');
+    if ((d[1] >> 5 & 1) == 1)
+        err(6, 'invalid zlib data: ' + (d[1] & 32 ? 'need' : 'unexpected') + ' dictionary');
+    return (d[1] >> 3 & 4) + 2;
+};
+function StrmOpt(opts, cb) {
+    if (typeof opts == 'function')
+        cb = opts, opts = {};
+    this.ondata = cb;
+    return opts;
+}
+/**
+ * Streaming DEFLATE decompression
+ */
+var Inflate = /*#__PURE__*/ (function () {
+    function Inflate(opts, cb) {
+        // no StrmOpt here to avoid adding to workerizer
+        if (typeof opts == 'function')
+            cb = opts, opts = {};
+        this.ondata = cb;
+        var dict = opts && opts.dictionary && opts.dictionary.subarray(-32768);
+        this.s = { i: 0, b: dict ? dict.length : 0 };
+        this.o = new u8(32768);
+        this.p = new u8(0);
+        if (dict)
+            this.o.set(dict);
+    }
+    Inflate.prototype.e = function (c) {
+        if (!this.ondata)
+            err(5);
+        if (this.d)
+            err(4);
+        if (!this.p.length)
+            this.p = c;
+        else if (c.length) {
+            var n = new u8(this.p.length + c.length);
+            n.set(this.p), n.set(c, this.p.length), this.p = n;
+        }
+    };
+    Inflate.prototype.c = function (final) {
+        this.s.i = +(this.d = final || false);
+        var bts = this.s.b;
+        var dt = inflt(this.p, this.s, this.o);
+        this.ondata(slc(dt, bts, this.s.b), this.d);
+        this.o = slc(dt, this.s.b - 32768), this.s.b = this.o.length;
+        this.p = slc(this.p, (this.s.p / 8) | 0), this.s.p &= 7;
+    };
+    /**
+     * Pushes a chunk to be inflated
+     * @param chunk The chunk to push
+     * @param final Whether this is the final chunk
+     */
+    Inflate.prototype.push = function (chunk, final) {
+        this.e(chunk), this.c(final);
+    };
+    return Inflate;
+}());
+/**
+ * Expands DEFLATE data with no wrapper
+ * @param data The data to decompress
+ * @param opts The decompression options
+ * @returns The decompressed version of the data
+ */
+function inflateSync(data, opts) {
+    return inflt(data, { i: 2 }, opts && opts.out, opts && opts.dictionary);
+}
+/**
+ * Streaming single or multi-member GZIP decompression
+ */
+var Gunzip = /*#__PURE__*/ (function () {
+    function Gunzip(opts, cb) {
+        this.v = 1;
+        this.r = 0;
+        Inflate.call(this, opts, cb);
+    }
+    /**
+     * Pushes a chunk to be GUNZIPped
+     * @param chunk The chunk to push
+     * @param final Whether this is the last chunk
+     */
+    Gunzip.prototype.push = function (chunk, final) {
+        Inflate.prototype.e.call(this, chunk);
+        this.r += chunk.length;
+        if (this.v) {
+            var p = this.p.subarray(this.v - 1);
+            var s = p.length > 3 ? gzs(p) : 4;
+            if (s > p.length) {
+                if (!final)
+                    return;
+            }
+            else if (this.v > 1 && this.onmember) {
+                this.onmember(this.r - p.length);
+            }
+            this.p = p.subarray(s), this.v = 0;
+        }
+        // necessary to prevent TS from using the closure value
+        // This allows for workerization to function correctly
+        Inflate.prototype.c.call(this, final);
+        // process concatenated GZIP
+        if (this.s.f && !this.s.l && !final) {
+            this.v = shft(this.s.p) + 9;
+            this.s = { i: 0 };
+            this.o = new u8(0);
+            this.push(new u8(0), final);
+        }
+    };
+    return Gunzip;
+}());
+/**
+ * Asynchronous streaming single or multi-member GZIP decompression
+ */
+var AsyncGunzip = /*#__PURE__*/ (function () {
+    function AsyncGunzip(opts, cb) {
+        var _this = this;
+        astrmify([
+            bInflt,
+            guze,
+            function () { return [astrm, Inflate, Gunzip]; }
+        ], this, StrmOpt.call(this, opts, cb), function (ev) {
+            var strm = new Gunzip(ev.data);
+            strm.onmember = function (offset) { return postMessage(offset); };
+            onmessage = astrm(strm);
+        }, 9, 0, function (offset) { return _this.onmember && _this.onmember(offset); });
+    }
+    return AsyncGunzip;
+}());
+/**
+ * Expands GZIP data
+ * @param data The data to decompress
+ * @param opts The decompression options
+ * @returns The decompressed version of the data
+ */
+function gunzipSync(data, opts) {
+    var st = gzs(data);
+    if (st + 8 > data.length)
+        err(6, 'invalid gzip data');
+    return inflt(data.subarray(st, -8), { i: 2 }, new u8(gzl(data)), opts);
+}
+/**
+ * Expands Zlib data
+ * @param data The data to decompress
+ * @param opts The decompression options
+ * @returns The decompressed version of the data
+ */
+function unzlibSync(data, opts) {
+    return inflt(data.subarray(zls(data), -4), { i: 2 }, opts, opts);
+}
+/**
+ * Expands compressed GZIP, Zlib, or raw DEFLATE data, automatically detecting the format
+ * @param data The data to decompress
+ * @param opts The decompression options
+ * @returns The decompressed version of the data
+ */
+function decompressSync(data, opts) {
+    return (data[0] == 31 && data[1] == 139 && data[2] == 8)
+        ? gunzipSync(data, opts)
+        : ((data[0] & 15) != 8 || (data[0] >> 4) > 7 || ((data[0] << 8 | data[1]) % 31))
+            ? inflateSync(data, opts)
+            : unzlibSync(data, opts);
+}
+// text decoder
+var td = typeof TextDecoder != 'undefined' && /*#__PURE__*/ new TextDecoder();
+// text decoder stream
+var tds = 0;
+try {
+    td.decode(et, { stream: true });
+    tds = 1;
+}
+catch (e) { }
+
 var browser$4 = {exports: {}};
 
 /**
@@ -6912,7 +7614,7 @@ class ZipHandler {
                 break;
             const next = fileCb(zipHeader);
             stop = !!next.stop;
-            let fileData;
+            let fileData = undefined;
             await this.tokenizer.ignore(zipHeader.extraFieldLength);
             if (zipHeader.dataDescriptor && zipHeader.compressedSize === 0) {
                 const chunks = [];
@@ -6977,41 +7679,13 @@ class ZipHandler {
                 break;
         }
     }
-    async inflate(zipHeader, fileData, cb) {
+    inflate(zipHeader, fileData, cb) {
         if (zipHeader.compressedMethod === 0) {
-            // Stored (uncompressed)
             return cb(fileData);
         }
-        if (zipHeader.compressedMethod !== 8) {
-            throw new Error(`Unsupported ZIP compression method: ${zipHeader.compressedMethod}`);
-        }
         debug(`Decompress filename=${zipHeader.filename}, compressed-size=${fileData.length}`);
-        const uncompressedData = await ZipHandler.decompressDeflateRaw(fileData);
+        const uncompressedData = decompressSync(fileData);
         return cb(uncompressedData);
-    }
-    static async decompressDeflateRaw(data) {
-        // Wrap Uint8Array in a ReadableStream without copying
-        const input = new ReadableStream({
-            start(controller) {
-                controller.enqueue(data);
-                controller.close();
-            }
-        });
-        const ds = new DecompressionStream("deflate-raw");
-        const output = input.pipeThrough(ds);
-        try {
-            // Collect decompressed bytes from the output stream
-            const response = new Response(output);
-            const buffer = await response.arrayBuffer();
-            return new Uint8Array(buffer);
-        }
-        catch (err) {
-            // Provide ZIP-specific error context
-            const message = err instanceof Error
-                ? `Failed to deflate ZIP entry: ${err.message}`
-                : "Unknown decompression error in ZIP entry";
-            throw new TypeError(message);
-        }
     }
     async readLocalFileHeader() {
         const signature = await this.tokenizer.peekToken(UINT32_LE);
@@ -7064,21 +7738,54 @@ function mergeArrays(chunks) {
 
 class GzipHandler {
     constructor(tokenizer) {
+        this.gunzip = undefined;
         this.tokenizer = tokenizer;
     }
     inflate() {
-        const tokenizer = this.tokenizer;
+        let done = false;
+        let cancelled = false;
+        const parent = this;
         return new ReadableStream({
+            start: controller => {
+                parent.gunzip = new AsyncGunzip((err, chunk, final) => {
+                    if (err) {
+                        controller.error(err);
+                        return;
+                    }
+                    if (chunk && !cancelled) {
+                        controller.enqueue(chunk);
+                    }
+                    if (final && !cancelled) {
+                        controller.close();
+                        parent.gunzip.terminate();
+                    }
+                });
+            },
             async pull(controller) {
-                const buffer = new Uint8Array(1024);
-                const size = await tokenizer.readBuffer(buffer, { mayBeLess: true });
-                if (size === 0) {
-                    controller.close();
-                    return;
+                const chunkSize = 1024;
+                try {
+                    const buffer = new Uint8Array(chunkSize);
+                    const size = await parent.tokenizer.readBuffer(buffer, { mayBeLess: true });
+                    if (size === 0) {
+                        if (!done) {
+                            done = true;
+                            if (!cancelled) {
+                                parent.gunzip.push(new Uint8Array(0), true);
+                            }
+                        }
+                        return;
+                    }
+                    parent.gunzip.push(buffer.subarray(0, size), false);
                 }
-                controller.enqueue(buffer.subarray(0, size));
+                catch (err) {
+                    controller.error(err);
+                }
+            },
+            cancel: () => {
+                parent.gunzip.terminate();
+                cancelled = true;
             }
-        }).pipeThrough(new DecompressionStream("gzip"));
+        });
     }
 }
 
@@ -7925,15 +8632,8 @@ let FileTypeParser$1 = class FileTypeParser {
 			const gzipHandler = new GzipHandler(tokenizer);
 
 			const stream = gzipHandler.inflate();
-			let shouldCancelStream = true;
 			try {
-				let compressedFileType;
-				try {
-					compressedFileType = await this.fromStream(stream);
-				} catch {
-					shouldCancelStream = false;
-				}
-
+				const compressedFileType = await this.fromStream(stream);
 				if (compressedFileType && compressedFileType.ext === 'tar') {
 					return {
 						ext: 'tar.gz',
@@ -7941,9 +8641,7 @@ let FileTypeParser$1 = class FileTypeParser {
 					};
 				}
 			} finally {
-				if (shouldCancelStream) {
-					await stream.cancel();
-				}
+				await stream.cancel();
 			}
 
 			return {
@@ -9863,7 +10561,7 @@ async function getLatestTag() {
   if (!latest) {
     throw new Error("No tags found");
   }
-  return latest;
+  return latest.replace(/^v/, "");
 }
 function compareVersion(a, b) {
   const normalize = (v) => v.replace(/^v/, "").split(".").map((n) => parseInt(n) || 0);
@@ -12472,6 +13170,15 @@ const offset$1 = {
   "9.9.23-42086-x64": {"send":"0A01814","recv":"1D1C9B9"},
   "6.9.85-42086-arm64": {"send":"23B0330","recv":"0957648"},
   "3.2.21-42086-x64": {"send":"5B42CF0","recv":"2FDA6F0"},
+  "9.9.23-42430-x64": {"send":"0A01A34","recv":"1D1CFF9"},
+  "9.9.25-42744-x64": {"send":"0A0D104","recv":"1D3E7F9"},
+  "6.9.85-42744-arm64": {"send":"23DFEF0","recv":"095FD80"},
+  "9.9.25-42905-x64": {"send":"0A12E74","recv":"1D450FD"},
+  "6.9.86-42905-arm64": {"send":"2342408","recv":"09639B8"},
+  "3.2.22-42941-x64": {"send":"5BC1630","recv":"3011E00"},
+  "3.2.22-42941-arm64": {"send":"3DC90AC","recv":"1497A70"},
+  "9.9.25-42941-x64": {"send":"0A131D4","recv":"1D4547D"},
+  "6.9.86-42941-arm64": {"send":"2346108","recv":"09675F0"},
 };
 
 class Frame {
@@ -32996,7 +33703,7 @@ class PacketOperationContext {
     const req = DownloadForwardMsg_default.build(this.context.napcore.basicInfo.uid, res_id);
     const resp = await this.context.client.sendOidbPacket(req, true);
     const res = DownloadForwardMsg_default.parse(resp);
-    const inflate = gunzipSync(res.result.payload);
+    const inflate = gunzipSync$1(res.result.payload);
     const result = new NapProtoMsg(LongMsgResult).decode(inflate);
     const main = result.action.find((r) => r.actionCommand === "MultiMsg");
     if (!main?.actionData.msgBody) {
@@ -33104,7 +33811,7 @@ class PacketClientSession {
 }
 
 const __vite_import_meta_env__ = {};
-const napCatVersion = typeof (__vite_import_meta_env__) !== "undefined" && "v4.9.74" || "alpha";
+const napCatVersion = typeof (__vite_import_meta_env__) !== "undefined" && "4.9.81" || "alpha";
 
 const typedOffset$1 = offset$1;
 class NTQQPacketApi {
@@ -46692,7 +47399,7 @@ TestAutoRegister02 = __decorateClass([
 class NodeIDependsAdapter {
   onMSFStatusChange(_statusType, _changeReasonType) {
   }
-  onMSFSsoError(_args) {
+  onMSFSsoError(_code, _desc) {
   }
   getGroupCode(_args) {
   }
@@ -66555,7 +67262,7 @@ class ConoutConnection {
     this._conoutPipeName = _conoutPipeName;
     const workerData = { conoutPipeName: _conoutPipeName };
     const scriptPath = dirname(fileURLToPath$1(import.meta.url));
-    this._worker = new Worker(join(scriptPath, "worker/conoutSocketWorker.mjs"), { workerData });
+    this._worker = new Worker$1(join(scriptPath, "worker/conoutSocketWorker.mjs"), { workerData });
     this._worker.on("message", (message) => {
       switch (message) {
         case ConoutWorkerMessage.READY:
@@ -102118,7 +102825,7 @@ class OB11PluginMangerAdapter extends IOB11NetworkAdapter {
 }
 
 async function runTask(workerScript, taskData) {
-  const worker = new Worker(workerScript);
+  const worker = new Worker$1(workerScript);
   try {
     return await new Promise((resolve, reject) => {
       worker.on("message", (result) => {
@@ -103164,6 +103871,15 @@ const offset = {
   "9.9.23-42086-x64": {"send":"2C99800","recv":"2C9CD80"},
   "3.2.21-42086-x64": {"send":"A7B1060","recv":"A7B4AE0"},
   "3.2.21-42086-arm64": {"send":"6B13038","recv":"6B169C8"},
+  "9.9.23-42430-x64": {"send":"2C9A4A0","recv":"2C9DA20"},
+  "9.9.25-42744-x64": {"send":"2CD8E40","recv":"2CDC3C0"},
+  "6.9.86-42744-arm64": {"send":"3DCC840","recv":"3DCF150"},
+  "9.9.25-42905-x64": {"send":"2CE46A0","recv":"2CE7C20"},
+  "6.9.86-42905-arm64": {"send":"3DD6098","recv":"3DD89A8"},
+  "3.2.22-42941-x64": {"send":"A8AD8A0","recv":"A8B1320"},
+  "9.9.25-42941-x64": {"send":"2CE4DA0","recv":"2CE8320"},
+  "3.2.22-42941-arm64": {"send":"6BC95E8","recv":"6BCCF78"},
+  "6.9.86-42941-arm64": {"send":"3DDDAD0","recv":"3DE03E0"},
 };
 
 const typedOffset = offset;
@@ -103459,6 +104175,14 @@ const AppidTable = {
   "3.2.21-42086": {"appid":537320248,"qua":"V1_LNX_NQ_3.2.21_42086_GW_B"},
   "9.9.23-42086": {"appid":537320212,"qua":"V1_WIN_NQ_9.9.23_42086_GW_B"},
   "6.9.85-42086": {"appid":537320237,"qua":"V1_MAC_NQ_6.9.85_42086_GW_B"},
+  "9.9.23-42430": {"appid":537320212,"qua":"V1_WIN_NQ_9.9.23_42430_GW_B"},
+  "9.9.25-42744": {"appid":537328470,"qua":"V1_WIN_NQ_9.9.23_42744_GW_B"},
+  "6.9.86-42744": {"appid":537328495,"qua":"V1_MAC_NQ_6.9.85_42744_GW_B"},
+  "9.9.25-42905": {"appid":537328521,"qua":"V1_WIN_NQ_9.9.25_42905_GW_B"},
+  "6.9.86-42905": {"appid":537328546,"qua":"V1_MAC_NQ_6.9.86_42905_GW_B"},
+  "3.2.22-42941": {"appid":537328659,"qua":"V1_LNX_NQ_3.2.22_42941_GW_B"},
+  "9.9.25-42941": {"appid":537328623,"qua":"V1_WIN_NQ_9.9.25_42941_GW_B"},
+  "6.9.86-42941": {"appid":537328648,"qua":"V1_MAC_NQ_6.9.86_42941_GW_B"},
 };
 
 class QQBasicInfoWrapper {
